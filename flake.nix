@@ -19,15 +19,25 @@
       # Edit this to install packages and modify dotfile configuration in your
       # $HOME.
       flake.homeModules.default = { pkgs, ... }: {
-        imports = [ ];
+        imports = [
+          # Add your other home-manager modules here.
+        ];
         programs = {
           bash.enable = true;
+
+          # For macOS's default shell.
           zsh.enable = true;
+
+          # https://haskell.flake.page/direnv
+          direnv = {
+            enable = true;
+            nix-direnv.enable = true;
+          };
+          starship.enable = true;
         };
       };
 
-
-      perSystem = { pkgs, ... }:
+      perSystem = { self', pkgs, ... }:
         let
           # TODO: Change username
           myUserName = "john";
@@ -42,6 +52,9 @@
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
               });
+
+          # Enables 'nix run' to activate.
+          packages.default = self'.packages.activate-home;
         };
     };
 }
