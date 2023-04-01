@@ -11,7 +11,11 @@ mkdir ~/mynixconfig && cd ~/mynixconfig
 nix flake init -t github:juspay/nix-dev-home
 ```
 
-This will create a `flake.nix` file in the current directory, which you can edit to your liking (see [configuration example](https://nix-community.github.io/home-manager/index.html#sec-usage-configuration)). At minimum, you must change the user name from `john` to your actual user name. You can then run `nix run` to activate this configuration in your $HOME.
+This will create a `flake.nix` file and a `home.nix` in the current directory. 
+
+- Edit `home.nix` to your liking (see [configuration example](https://nix-community.github.io/home-manager/index.html#sec-usage-configuration)). 
+- Also, you must change the user name in `flake.nix` from `john` to your actual user name. 
+- You can then run `nix run` to activate this configuration in your $HOME.
 
 ## Caveats
 

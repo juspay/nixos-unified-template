@@ -16,38 +16,16 @@
         inputs.nixos-flake.flakeModule
       ];
 
-      # Edit this to install packages and modify dotfile configuration in your
-      # $HOME.
-      flake.homeModules.default = { pkgs, ... }: {
-        imports = [
-          # Add your other home-manager modules here.
-        ];
-
-        # Nix packages to install to $HOME
-        home.packages = with pkgs; [
-          nix-output-monitor # https://github.com/maralorn/nix-output-monitor
-          nix-info
-        ];
-
-        # Programs natively supported by home-manager.
-        programs = {
-          bash.enable = true;
-
-          # For macOS's default shell.
-          zsh.enable = true;
-
-          # https://haskell.flake.page/direnv
-          direnv = {
-            enable = true;
-            nix-direnv.enable = true;
-          };
-          starship.enable = true;
-        };
-      };
+      flake.homeModules.default = ./home.nix;
 
       flake.templates.default = {
         description = "A `home-manager` template providing useful tools & settings for Nix-based development";
-        path = builtins.path { path = ./.; filter = path: _: baseNameOf path == "flake.nix" || baseNameOf path == "flake.lock"; };
+        path = builtins.path {
+          path = ./.;
+          filter = path: _:
+            inputs.nixpkgs.lib.hasSuffix ".nix" path ||
+            inputs.nixpkgs.lib.hasSuffix ".lock" path;
+        };
       };
 
       perSystem = { self', pkgs, ... }:
