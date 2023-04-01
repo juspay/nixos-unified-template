@@ -26,4 +26,4 @@ This will create a `flake.nix` file and a `home.nix` in the current directory.
 
 ### But I use NixOS
 
-You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of https://github.com/srid/nixos-flake for an example.
+You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of https://github.com/srid/nixos-flake for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead.

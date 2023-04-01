@@ -20,7 +20,13 @@
     bash.enable = true;
 
     # For macOS's default shell.
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+      envExtra = ''
+        # Make Nix and home-manager installed things available in PATH.
+        export PATH=/run/current-system/sw/bin/:.nix-profile/bin:$PATH
+      '';
+    };
 
     # https://haskell.flake.page/direnv
     direnv = {
