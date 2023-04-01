@@ -37,6 +37,11 @@
         };
       };
 
+      flake.templates.default = {
+        description = "A `home-manager` template providing useful tools & settings for Nix-based development";
+        path = builtins.path { path = ./.; filter = path: _: baseNameOf path == "flake.nix" || baseNameOf path == "flake.lock"; };
+      };
+
       perSystem = { self', pkgs, ... }:
         let
           # TODO: Change username
