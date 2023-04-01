@@ -4,6 +4,8 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
 
 ## Usage
 
+[![asciicast](https://asciinema.org/a/572907.svg)](https://asciinema.org/a/572907)
+
 Either click the green "Use this template" button above (on [Github](https://github.com/juspay/nix-dev-home)) and clone it locally, or run the following:
 
 ```sh
