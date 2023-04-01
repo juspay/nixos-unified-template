@@ -22,6 +22,14 @@
         imports = [
           # Add your other home-manager modules here.
         ];
+
+        # Nix packages to install to $HOME
+        home.packages = with pkgs; [
+          nix-output-monitor # https://github.com/maralorn/nix-output-monitor
+          nix-info
+        ];
+
+        # Programs natively supported by home-manager.
         programs = {
           bash.enable = true;
 
@@ -59,7 +67,11 @@
               });
 
           # Enables 'nix run' to activate.
-          packages.default = self'.packages.activate-home;
+          apps.default.program = self'.packages.activate-home;
+
+          # Enable 'nix build' to build the home configuration, but without
+          # activating.
+          packages.default = self'.legacyPackages.homeConfigurations.${myUserName}.activationPackage;
         };
     };
 }
