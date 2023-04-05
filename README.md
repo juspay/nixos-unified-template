@@ -20,9 +20,16 @@ This will create a `flake.nix` file and a `home.nix` in the current directory.
 - You can then run `nix run` to activate this configuration in your $HOME.
     - After running this, restart your terminal. Expect to see the [starship](https://starship.rs/) prompt. When you `cd` into a project containing `.envrc` configured for flakes (such as [haskell-template](https://github.com/srid/haskell-template)), you should be automatically be put in the `nix develop` shell along with a change to the starship prompt indicating the same.
 
-## Caveats
+## Troubleshooting
 
-`nix run` may complain of existing dotfiles in your $HOME. You should delete them and try again because Nix will be managing your dotfiles going forward.
+- Running`nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
+    - Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix.
+- Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
+    - Add yourself to the trusted-users list and restart your macOS machine.
+        ```sh
+        mkdir -p ~/.config/nix
+        echo "trusted-users = root $USER" > $HOME/.config/nix/nix.conf
+        ```
 
 ## FAQ
 
