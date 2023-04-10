@@ -13,6 +13,8 @@ mkdir ~/mynixconfig && cd ~/mynixconfig
 nix flake init -t github:juspay/nix-dev-home
 ```
 
+(If you do not already have it, [install Nix](https://haskell.flake.page/nix) first)
+
 This will create a `flake.nix` file and a `home.nix` in the current directory. 
 
 - Edit `home.nix` to your liking (see [configuration example](https://nix-community.github.io/home-manager/index.html#sec-usage-configuration)). 
