@@ -21,6 +21,8 @@ This will create a `flake.nix` file and a `home.nix` in the current directory.
 - Also, you must change the user name in `flake.nix` from `john` to your actual user name. 
 - You can then run `nix run` to activate this configuration in your $HOME.
     - After running this, restart your terminal. Expect to see the [starship](https://starship.rs/) prompt. When you `cd` into a project containing `.envrc` configured for flakes (such as [haskell-template](https://github.com/srid/haskell-template)), you should be automatically be put in the `nix develop` shell along with a change to the starship prompt indicating the same.
+    
+To browse the capabilities of home-manager (and to see what else can go in your `home.nix` -- such as shell aliases), consult https://nix-community.github.io/home-manager/options.html
 
 ## Troubleshooting
 
@@ -38,3 +40,4 @@ This will create a `flake.nix` file and a `home.nix` in the current directory.
 ### But I use NixOS
 
 You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of https://github.com/srid/nixos-flake for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead.
+
