@@ -17,7 +17,14 @@
 
   # Programs natively supported by home-manager.
   programs = {
-    bash.enable = true;
+    # on macOS, you probably don't need this
+    bash = {
+      enable = true;
+      envExtra = ''
+        # Make Nix and home-manager installed things available in PATH.
+        export PATH=/run/current-system/sw/bin/:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:$PATH
+      '';
+    };
 
     # For macOS's default shell.
     zsh = {
