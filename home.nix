@@ -13,6 +13,9 @@
   home.packages = with pkgs; [
     nix-output-monitor # https://github.com/maralorn/nix-output-monitor
     nix-info
+    lazygit
+    ripgrep
+    nil # Nix language server
   ];
 
   # Programs natively supported by home-manager.
@@ -41,5 +44,8 @@
       nix-direnv.enable = true;
     };
     starship.enable = true;
+    
+    # Type `z <pat>` to cd to some directory
+    zoxide.enable = true;
   };
 }
