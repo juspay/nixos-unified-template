@@ -69,9 +69,6 @@
         '';
       }
 
-      # Developing plugins in Haskell
-      nvim-hs-vim
-
       # Language support
       vim-nix
 
