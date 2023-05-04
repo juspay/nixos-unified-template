@@ -4,8 +4,9 @@
 # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
 { pkgs, ... }: {
   imports = [
-    # Add your home-manager modules here.
+    # This loads ./home/neovim/default.nix - neovim configured for Haskell dev, and other things.
     ./home/neovim
+    # Add more of your home-manager modules here.
   ];
 
   # Nix packages to install to $HOME
@@ -15,8 +16,8 @@
     nix-output-monitor # https://github.com/maralorn/nix-output-monitor
     nix-info
     cachix
-    lazygit
-    ripgrep
+    lazygit # Better git UI
+    ripgrep # Better `grep`
     nil # Nix language server
   ];
 
