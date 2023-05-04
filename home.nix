@@ -4,8 +4,8 @@
 # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
 { pkgs, ... }: {
   imports = [
-    # Add your other home-manager modules here.
-    ./home/neovim.nix
+    # Add your home-manager modules here.
+    ./home/neovim
   ];
 
   # Nix packages to install to $HOME

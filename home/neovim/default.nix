@@ -82,7 +82,7 @@
     # plugins list above.
     extraConfig = ''
       lua << EOF
-      ${builtins.readFile ./neovim.lua}
+      ${builtins.readFile ./config.lua}
       EOF
     '';
   };
