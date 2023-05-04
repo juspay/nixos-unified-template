@@ -1,6 +1,6 @@
 # nix-dev-home
 
-A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development
+A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. Neovim pre-configured for Haskell Language Server is included as a key demonstration (try it with [haskell-template](https://github.com/srid/haskell-template).)
 
 ## Usage
 
