@@ -33,6 +33,7 @@
 
       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       # Preferred theme
+      tokyonight-nvim
       papercolor-theme
 
       # File browser
