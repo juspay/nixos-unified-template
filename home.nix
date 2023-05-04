@@ -5,6 +5,7 @@
 { pkgs, ... }: {
   imports = [
     # Add your other home-manager modules here.
+    ./neovim.nix
   ];
 
   # Nix packages to install to $HOME
@@ -45,7 +46,7 @@
       nix-direnv.enable = true;
     };
     starship.enable = true;
-    
+
     # Type `z <pat>` to cd to some directory
     zoxide.enable = true;
   };
