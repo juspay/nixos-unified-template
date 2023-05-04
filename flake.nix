@@ -25,7 +25,7 @@
           filter = path: _:
             inputs.nixpkgs.lib.hasSuffix ".nix" path ||
             inputs.nixpkgs.lib.hasSuffix ".lock" path ||
-            path == "home";
+            builtins.trace path path == "home";
         };
       };
 
