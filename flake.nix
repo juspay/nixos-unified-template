@@ -23,8 +23,8 @@
         path = builtins.path {
           path = ./.;
           filter = path: _:
-            inputs.nixpkgs.lib.hasSuffix ".nix" path ||
-            inputs.nixpkgs.lib.hasSuffix ".lock" path;
+            !(inputs.nixpkgs.lib.hasSuffix "LICENSE" path ||
+              inputs.nixpkgs.lib.hasSuffix "README.md" path);
         };
       };
 
