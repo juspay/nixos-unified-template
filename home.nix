@@ -5,7 +5,7 @@
 { pkgs, ... }: {
   imports = [
     # Add your other home-manager modules here.
-    ./neovim.nix
+    ./home/neovim.nix
   ];
 
   # Nix packages to install to $HOME
