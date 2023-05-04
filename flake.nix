@@ -24,7 +24,8 @@
           path = ./.;
           filter = path: _:
             inputs.nixpkgs.lib.hasSuffix ".nix" path ||
-            inputs.nixpkgs.lib.hasSuffix ".lock" path;
+            inputs.nixpkgs.lib.hasSuffix ".lock" path ||
+            inputs.nixpkgs.lib.hasSuffix ".lua" path;
         };
       };
 
