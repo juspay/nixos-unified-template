@@ -41,11 +41,14 @@
       '';
     };
 
-    # https://haskell.flake.page/direnv
+    # https://zero-to-flakes.com/direnv
     direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
+
+    # Want to configure starship? See this example:
+    # https://github.com/srid/nixos-config/blob/f9cf0def19fbc7aa1e836be481ce50d214e34036/home/starship.nix#L4-L19
     starship.enable = true;
 
     # Type `z <pat>` to cd to some directory
