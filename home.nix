@@ -13,7 +13,7 @@
   #
   # Search for packages here: https://search.nixos.org/packages
   home.packages = with pkgs; [
-    nix-output-monitor # https://github.com/maralorn/nix-output-monitor
+    tmate
     nix-info
     cachix
     lazygit # Better git UI
