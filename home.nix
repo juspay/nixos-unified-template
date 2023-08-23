@@ -19,6 +19,7 @@
     lazygit # Better git UI
     ripgrep # Better `grep`
     nil # Nix language server
+    nixci
   ];
 
   # Programs natively supported by home-manager.
