@@ -11,6 +11,7 @@ Either click the green "Use this template" button above (on [Github](https://git
 ```sh
 mkdir ~/mynixconfig && cd ~/mynixconfig
 nix flake init -t github:juspay/nix-dev-home
+nix flake update  # Update inputs to use latest software
 ```
 
 (If you do not already have it, [install Nix](https://haskell.flake.page/nix) first)
