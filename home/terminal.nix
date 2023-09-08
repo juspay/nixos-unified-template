@@ -19,9 +19,6 @@
     nixpkgs-fmt
     nixci
 
-    # Publishing
-    asciinema
-
     # Dev
     gh
     just
