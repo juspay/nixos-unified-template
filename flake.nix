@@ -12,18 +12,10 @@
     systems.url = "github:nix-systems/default";
   };
 
-  outputs =
-    inputs @ { self
-    , nixpkgs
-    , home-manager
-    , flake-parts
-    , nixos-flake
-    , systems
-    , ...
-    }:
+  outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       # systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      systems = import systems;
+      systems = import inputs.systems;
       imports = [
         inputs.nixos-flake.flakeModule
         # Edit the contenst of the ./home directory to install packages and modify dotfile configuration in your
@@ -50,10 +42,10 @@
         in
         {
           legacyPackages.homeConfigurations.${myUserName} =
-            self.nixos-flake.lib.mkHomeConfiguration
+            inputs.self.nixos-flake.lib.mkHomeConfiguration
               pkgs
               ({ pkgs, ... }: {
-                imports = [ self.homeModules.default ];
+                imports = [ inputs.self.homeModules.default ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
