@@ -59,6 +59,8 @@
                 home.stateVersion = "22.11";
               });
 
+          formatter = pkgs.nixpkgs-fmt;
+
           # Enables 'nix run' to activate.
           apps.default.program = self'.packages.activate-home;
 
