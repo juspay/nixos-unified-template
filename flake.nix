@@ -1,4 +1,6 @@
 {
+  description = "A home-manager template providing useful tools & settings for Nix-based development";
+
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -7,16 +9,29 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs =
+    inputs @ { self
+    , nixpkgs
+    , home-manager
+    , flake-parts
+    , nixos-flake
+    , systems
+    , ...
+    }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      # systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      systems = import systems;
       imports = [
         inputs.nixos-flake.flakeModule
+        # Edit the contenst of the ./home directory to install packages and modify dotfile configuration in your
+        # $HOME.
+        #
+        # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
+        ./home
       ];
-
-      flake.homeModules.default = ./home.nix;
 
       flake.templates.default = {
         description = "A `home-manager` template providing useful tools & settings for Nix-based development";
@@ -31,7 +46,7 @@
       perSystem = { self', pkgs, ... }:
         let
           # TODO: Change username
-          myUserName = "john";
+          myUserName = "runner";
         in
         {
           legacyPackages.homeConfigurations.${myUserName} =
