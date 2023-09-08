@@ -39,7 +39,6 @@
   # Programs natively supported by home-manager.
   programs = {
     bat.enable = true;
-    autojump.enable = false;
     # Type `z <pat>` to cd to some directory
     zoxide.enable = true;
     # Type `<ctrl> + r` to fuzzy search your shell history
