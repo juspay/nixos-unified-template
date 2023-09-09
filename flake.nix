@@ -19,11 +19,6 @@
       systems = import inputs.systems;
       imports = [
         inputs.nixos-flake.flakeModule
-        # Edit the contenst of the ./home directory to install packages and modify dotfile configuration in your
-        # $HOME.
-        #
-        # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-        ./home
       ];
 
       flake.templates.default = {
@@ -46,7 +41,11 @@
             inputs.self.nixos-flake.lib.mkHomeConfiguration
               pkgs
               ({ pkgs, ... }: {
-                imports = [ inputs.self.homeModules.default ];
+                # Edit the contents of the ./home directory to install packages and modify dotfile configuration in your
+                # $HOME.
+                #
+                # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
+                imports = [ ./home ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
