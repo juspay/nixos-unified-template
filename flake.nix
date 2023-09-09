@@ -9,12 +9,13 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
+
+    # see https://github.com/nix-systems/default/blob/main/default.nix
     systems.url = "github:nix-systems/default";
   };
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      # systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       systems = import inputs.systems;
       imports = [
         inputs.nixos-flake.flakeModule
