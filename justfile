@@ -13,6 +13,15 @@ help:
     @echo "\n...by running 'just <command>'.\n"
     @echo "This message is printed by 'just help' and just 'just'.\n"
 
+# Print nix flake inputs and outputs
+io:
+    nix flake metadata
+    nix flake show
+
+# Update nix flake
+update:
+    nix flake update
+
 # Lint nix files
 lint:
     nix fmt
@@ -20,6 +29,14 @@ lint:
 # Check nix flake
 check:
     nix flake check
+
+# Build nix flake
+build: lint check
+    nix build
+
+# Remove build output link (no garbage collection)
+clean:
+    rm -f ./result
 
 # Run nix flake to setup environment
 run: lint check
