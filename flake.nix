@@ -1,4 +1,6 @@
 {
+  description = "A home-manager template providing useful tools & settings for Nix-based development";
+
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -7,16 +9,17 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
+
+    # see https://github.com/nix-systems/default/blob/main/default.nix
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      systems = import inputs.systems;
       imports = [
         inputs.nixos-flake.flakeModule
       ];
-
-      flake.homeModules.default = ./home.nix;
 
       flake.templates.default = {
         description = "A `home-manager` template providing useful tools & settings for Nix-based development";
@@ -31,18 +34,24 @@
       perSystem = { self', pkgs, ... }:
         let
           # TODO: Change username
-          myUserName = "john";
+          myUserName = "runner";
         in
         {
           legacyPackages.homeConfigurations.${myUserName} =
-            self.nixos-flake.lib.mkHomeConfiguration
+            inputs.self.nixos-flake.lib.mkHomeConfiguration
               pkgs
               ({ pkgs, ... }: {
-                imports = [ self.homeModules.default ];
+                # Edit the contents of the ./home directory to install packages and modify dotfile configuration in your
+                # $HOME.
+                #
+                # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
+                imports = [ ./home ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
               });
+
+          formatter = pkgs.nixpkgs-fmt;
 
           # Enables 'nix run' to activate.
           apps.default.program = self'.packages.activate-home;
@@ -50,6 +59,11 @@
           # Enable 'nix build' to build the home configuration, but without
           # activating.
           packages.default = self'.legacyPackages.homeConfigurations.${myUserName}.activationPackage;
+
+          devShells.default = pkgs.mkShell {
+            name = "nix-dev-home";
+            nativeBuildInputs = with pkgs; [ just ];
+          };
         };
     };
 }

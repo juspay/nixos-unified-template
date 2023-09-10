@@ -1,29 +1,50 @@
-# Edit this to install packages and modify dotfile configuration in your
-# $HOME.
-#
-# https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-{ pkgs, ... }: {
-  imports = [
-    # This loads ./home/neovim/default.nix - neovim configured for Haskell dev, and other things.
-    ./home/neovim
-    # Add more of your home-manager modules here.
-  ];
+{ pkgs, ... }:
 
+# Platform-independent terminal setup
+{
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages
   home.packages = with pkgs; [
-    tmate
-    nix-info
-    cachix
-    lazygit # Better git UI
+    # Unix tools
     ripgrep # Better `grep`
+    fd
+    sd
+    tree
+
+    # Nix dev
+    cachix
     nil # Nix language server
+    nix-info
+    nixpkgs-fmt
     nixci
+
+    # Dev
+    gh
+    just
+    lazygit # Better git UI
+    tmate
   ];
+
+  home.shellAliases = rec {
+    e = "nvim";
+    g = "git";
+    lg = "lazygit";
+    t = "tree";
+  };
 
   # Programs natively supported by home-manager.
   programs = {
+    bat.enable = true;
+    # Type `z <pat>` to cd to some directory
+    zoxide.enable = true;
+    # Type `<ctrl> + r` to fuzzy search your shell history
+    fzf.enable = true;
+    jq.enable = true;
+    nix-index.enable = true;
+    htop.enable = true;
+
+
     # on macOS, you probably don't need this
     bash = {
       enable = true;
@@ -47,12 +68,5 @@
       enable = true;
       nix-direnv.enable = true;
     };
-
-    # Want to configure starship? See this example:
-    # https://github.com/srid/nixos-config/blob/f9cf0def19fbc7aa1e836be481ce50d214e34036/home/starship.nix#L4-L19
-    starship.enable = true;
-
-    # Type `z <pat>` to cd to some directory
-    zoxide.enable = true;
   };
 }
