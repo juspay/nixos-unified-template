@@ -23,6 +23,10 @@ lint:
 check:
   nix flake check
 
+# Manually enter dev shell
+dev:
+  nix develop
+
 # Build nix flake
 build: lint check
   nix build
