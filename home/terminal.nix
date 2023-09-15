@@ -20,17 +20,14 @@
     nixci
 
     # Dev
-    gh
     just
     lazygit # Better git UI
     tmate
   ];
 
   home.shellAliases = rec {
-    e = "nvim";
     g = "git";
     lg = "lazygit";
-    t = "tree";
   };
 
   # Programs natively supported by home-manager.
