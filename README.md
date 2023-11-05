@@ -43,7 +43,7 @@ This will create a `flake.nix` file in the current directory and a `./home` dire
 - If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
   - After running this, restart your terminal. Expect to see the [starship](https://starship.rs/) prompt. When you `cd` into a project containing `.envrc` configured for flakes (such as [haskell-template](https://github.com/srid/haskell-template)), you should automatically be put in the `nix develop` shell along with a change to the starship prompt indicating the same.
 
-To browse the capabilities of home-manager (and to see what else can go in your `./home` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html).
+To browse the capabilities of home-manager (and to see what else can go in your `./home` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
 
 ## Troubleshooting
 
