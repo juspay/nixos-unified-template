@@ -49,7 +49,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 - Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
   - Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)).
-  - Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
+- Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
   - Add yourself to the trusted-users list and restart your macOS machine.
 
     ```sh
