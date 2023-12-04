@@ -25,9 +25,10 @@
         description = "A `home-manager` template providing useful tools & settings for Nix-based development";
         path = builtins.path {
           path = ./.;
-          filter = path: _:
-            !(inputs.nixpkgs.lib.hasSuffix "LICENSE" path ||
-              inputs.nixpkgs.lib.hasSuffix "README.md" path);
+          filter = path: _: with inputs.nixpkgs.lib;
+            !(hasSuffix "LICENSE" path ||
+              hasSuffix "README.md" path ||
+              hasSuffix "flake.lock" path);
         };
       };
 
