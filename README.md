@@ -14,7 +14,7 @@ nix flake init -t github:juspay/nix-dev-home
 nix flake update  # Update inputs to use latest software
 ```
 
-(If you do not already have it, [install Nix](https://zero-to-flakes.com/install) first)
+(If you do not already have it, [install Nix](https://nixos.asia/en/install) first)
 
 This will create a `flake.nix` file in the current directory and a `./home` directory containing the home-manager configuration that you can review starting with `./home/default.nix`. It will also create a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
