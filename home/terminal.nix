@@ -25,7 +25,7 @@
     tmate
   ];
 
-  home.shellAliases = rec {
+  home.shellAliases = {
     g = "git";
     lg = "lazygit";
   };
@@ -64,6 +64,16 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+
+    # https://nixos.asia/en/git
+    git = {
+      enable = true;
+      # userName = "John Doe";
+      # userEmail = "johndoe@example.com";
+      extraConfig = {
+        # init.defaultBranch = "master";
+      };
     };
   };
 }
