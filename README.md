@@ -47,6 +47,8 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 ## Troubleshooting
 
+- `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
+  - This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$USER/ && sudo chown $USER /nix/var/nix/profiles/per-user/$USER` and try again.
 - Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
   - Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)).
 - Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
