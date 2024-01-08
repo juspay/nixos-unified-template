@@ -9,10 +9,11 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
 1. Create a local repository mirroring this template. There are two ways to do this; the first one is favoured over the rest; pick your choice:
     1. Click the green "Use this template" button above on Github, and then clone your repo locally: ![](https://private-user-images.githubusercontent.com/3998/293769444-4a67d757-7901-4140-ac0b-49d3caf7e4c9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDQyMjM1MzksIm5iZiI6MTcwNDIyMzIzOSwicGF0aCI6Ii8zOTk4LzI5Mzc2OTQ0NC00YTY3ZDc1Ny03OTAxLTQxNDAtYWMwYi00OWQzY2FmN2U0YzkucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI0MDEwMiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNDAxMDJUMTkyMDM5WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MTMyYjI2MjZlYWQxMjEwNzRmODlkMmMwY2FlMzliOTM3M2NkZTU2MmFkNmRjNDllOWUxOTM3ZDFjMTY0ZGE0MSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.clV5VBP2eifM3kFx0bXjijKENpm4lg2UmDGpxBc99bw)
         ```sh-session
+        # Replace this URL with your repo URL
         git clone https://github.com/user/nixconfig.git
         cd nixconfig
         ```
-    1. Run `nix flake init` on an empty directory
+    1. Or, run `nix flake init` on an empty directory
         ```sh-session
         mkdir nixconfig 
         cd nixconfig
