@@ -23,6 +23,8 @@
     just
     lazygit # Better git UI
     tmate
+
+    nix-health
   ];
 
   home.shellAliases = {
