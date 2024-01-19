@@ -40,9 +40,15 @@
     # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
     jq.enable = true;
-    nix-index.enable = true;
     htop.enable = true;
 
+    # command-not-found handler to suggest nix way of installing stuff.
+    # FIXME: This ought to show new nix cli commands though:
+    # https://github.com/nix-community/nix-index/issues/191
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
     # on macOS, you probably don't need this
     bash = {
