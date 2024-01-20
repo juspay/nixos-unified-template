@@ -21,6 +21,7 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         ```
 1. Update the flake inputs so as to use latest sofware:
     ```sh
+    nix flake lock    # Ensure `flake.lock` exists
     nix flake update  # Update inputs to use latest software
     ```
 1. Open `flake.nix` and set `myUserName` to your user name. You can use `echo $USER` to get your user name.[^runner]
