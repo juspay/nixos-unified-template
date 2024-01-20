@@ -12,6 +12,8 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         # Replace this URL with your repo URL
         git clone https://github.com/user/nixconfig.git
         cd nixconfig
+        # Update to latest software
+        nix flake update
         ```
     1. Or, run `nix flake init` on an empty directory
         ```sh-session
@@ -19,11 +21,6 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         cd nixconfig
         nix flake init -t github:juspay/nix-dev-home
         ```
-1. Update the flake inputs so as to use latest sofware:
-    ```sh
-    nix flake lock    # Ensure `flake.lock` exists
-    nix flake update  # Update inputs to use latest software
-    ```
 1. Open `flake.nix` and set `myUserName` to your user name. You can use `echo $USER` to get your user name.[^runner]
     - Optionally, you may edit `./home/default.nix` to your liking.
 1. Run either `nix run` or `nix develop -c just run` to active your configuration.
