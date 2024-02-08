@@ -68,7 +68,7 @@
       '';
     };
 
-    # https://zero-to-flakes.com/direnv
+    # https://nixos.asia/en/direnv
     direnv = {
       enable = true;
       nix-direnv.enable = true;
