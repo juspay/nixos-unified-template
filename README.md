@@ -34,7 +34,7 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
 
 ### Details 
 
-The configuration repo has `flake.nix` file in the current directory and a `./home` directory containing the home-manager configuration that you can review starting with `./home/default.nix`. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and a `./home.nix` file containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
 You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` to activate this configuration in your `$HOME`. On most systems you are likely to experience at least one of the issues mentioned below in [Troubleshooting](#troubleshooting). A more complete sequence might be
 <details>
@@ -54,7 +54,7 @@ runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-ho
 
 If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
 
-To browse the capabilities of home-manager (and to see what else can go in your `./home` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
+To browse the capabilities of home-manager (and to see what else can go in your `./home.nix` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
 
 
 ### Demo
