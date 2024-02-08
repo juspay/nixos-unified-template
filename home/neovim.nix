@@ -3,8 +3,15 @@
     enable = true;
 
     colorschemes.ayu.enable = true;
+    options = {
+      expandtab = true;
+      shiftwidth = 4;
+      smartindent = true;
+      tabstop = 4;
+    };
     plugins = {
       lightline.enable = true;
+      treesitter.enable = true;
       lsp = {
         enable = true;
         servers = {
