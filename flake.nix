@@ -6,12 +6,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
-
-    # see https://github.com/nix-systems/default/blob/main/default.nix
     systems.url = "github:nix-systems/default";
+
+    # Software inputs
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
@@ -46,7 +47,10 @@
                 # $HOME.
                 #
                 # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-                imports = [ ./home ];
+                imports = [ 
+                  inputs.nixvim.homeManagerModules.nixvim
+                  ./home 
+                ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
