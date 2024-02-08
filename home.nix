@@ -29,13 +29,10 @@
     nix-info
     nixpkgs-fmt
     nixci
+    nix-health
 
     # Dev
-    just
-    lazygit # Better git UI
     tmate
-
-    nix-health
   ];
 
   home.shellAliases = {
@@ -140,9 +137,16 @@
       enable = true;
       # userName = "John Doe";
       # userEmail = "johndoe@example.com";
+      ignores = [ "*~" "*.swp" ];
+      aliases = {
+        ci = "commit";
+      };
       extraConfig = {
         # init.defaultBranch = "master";
+        # pull.rebase = "false";
       };
     };
+    lazygit.enable = true;
+
   };
 }
