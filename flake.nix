@@ -47,10 +47,7 @@
                 # $HOME.
                 #
                 # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-                imports = [
-                  inputs.nixvim.homeManagerModules.nixvim
-                  ./home
-                ];
+                imports = [ ./home ];
                 home.username = myUserName;
                 home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${myUserName}";
                 home.stateVersion = "22.11";
