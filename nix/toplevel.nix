@@ -4,8 +4,7 @@
 {
   perSystem = { self', pkgs, ... }:
     let
-      # TODO: Change username
-      myUserName = "runner";
+      inherit (import ../config.nix) myUserName;
     in
     {
       legacyPackages.homeConfigurations.${myUserName} =
