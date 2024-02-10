@@ -1,6 +1,7 @@
 { flake, pkgs, ... }:
 {
   imports = [
+    flake.inputs.nix-index-database.hmModules.nix-index
     flake.inputs.nixvim.homeManagerModules.nixvim
   ];
 
@@ -76,6 +77,7 @@
       enable = true;
       enableZshIntegration = true;
     };
+    # nix-index-database.comma.enable = true;
 
     starship = {
       enable = true;
