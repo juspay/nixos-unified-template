@@ -4,7 +4,7 @@
   flake.templates.default = {
     description = "A `home-manager` template providing useful tools & settings for Nix-based development";
     path = builtins.path {
-      path = ./.;
+      path = inputs.self;
       filter = path: _: with inputs.nixpkgs.lib;
         !(hasSuffix "LICENSE" path ||
           hasSuffix "README.md" path ||
