@@ -95,3 +95,7 @@ sudo pkill nix-daemon
 ### But I use NixOS
 
 You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of [https://github.com/srid/nixos-flake](https://github.com/srid/nixos-flake) for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead.
+
+### `/nix/store` garbage collection
+
+By default garbage collection is run automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv?tab=readme-ov-file#nix-direnv)).

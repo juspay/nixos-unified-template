@@ -12,6 +12,13 @@
     # FIXME: Waiting for this to be merged:
     # https://github.com/nix-community/home-manager/pull/4031
     # nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
+
+    # Garbage collect the Nix store
+    gc = {
+      automatic = true;
+      # Change how often the garbage collector runs (default: weekly)
+      # frequency = "monthly";
+    };
   };
 
   # Nix packages to install to $HOME
