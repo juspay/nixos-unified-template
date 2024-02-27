@@ -1,6 +1,6 @@
 # nix-dev-home
 
-A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. Neovim pre-configured for Haskell Language Server is included as a key demonstration (try it with [haskell-template](https://github.com/srid/haskell-template)).
+A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. See [`home.nix`](home.nix) to see what's available.
 
 ## Usage
 
@@ -21,9 +21,9 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         cd nixconfig
         nix flake init -t github:juspay/nix-dev-home
         ```
-1. Open `flake.nix` and set `myUserName` to your user name. You can use `echo $USER` to get your user name.[^runner]
-    - Optionally, you may edit `./home/default.nix` to your liking.
-1. Run either `nix run` or `nix develop -c just run` to active your configuration.
+1. Open `config.nix` and set `myUserName` to your user name. You can use `echo $USER` to get your user name.[^runner]
+    - Optionally, you may edit `./home.nix` to your liking.
+1. Run either `nix run` or `nix develop -c just run` to activate your configuration.
 1. Restart your terminal. 
     - Expect to see the [starship](https://starship.rs/) prompt. When you `cd` into a project containing `.envrc` configured for flakes (such as this very repository), you should automatically be put in the `nix develop` shell along with a change to the starship prompt indicating the same. If not, run `direnv allow` once.
 
@@ -34,7 +34,7 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
 
 ### Details 
 
-The configuration repo has `flake.nix` file in the current directory and a `./home` directory containing the home-manager configuration that you can review starting with `./home/default.nix`. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and a `./home.nix` file containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
 You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` to activate this configuration in your `$HOME`. On most systems you are likely to experience at least one of the issues mentioned below in [Troubleshooting](#troubleshooting). A more complete sequence might be
 <details>
@@ -54,7 +54,7 @@ runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-ho
 
 If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
 
-To browse the capabilities of home-manager (and to see what else can go in your `./home` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
+To browse the capabilities of home-manager (and to see what else can go in your `./home.nix` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
 
 
 ### Demo
@@ -66,17 +66,29 @@ A sample demo of the setup process is shown below:
 
 ## Troubleshooting
 
-- `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
-  - This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$USER/ && sudo chown $USER /nix/var/nix/profiles/per-user/$USER` and try again.
-- Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
-  - Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)).
-- Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
-  - Add yourself to the trusted-users list and restart your macOS machine.
+### `error: opening lock file ...`
 
-    ```sh
-    mkdir -p ~/.config/nix
-    echo "trusted-users = root $USER" > $HOME/.config/nix/nix.conf
-    ```
+**Problem**: `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
+
+**Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$USER/ && sudo chown $USER /nix/var/nix/profiles/per-user/$USER` and try again.
+
+### `Existing file ... is in the way of ...`
+
+**Problem**: Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
+
+**Solution**: Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)).
+
+### Cannot use cache / cachix
+
+**Problem**: Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
+
+**Solution**: Add yourself to the `trusted-users` nix config and restart the nix daemon.
+
+```sh
+mkdir -p ~/.config/nix
+echo "trusted-users = root $USER" > $HOME/.config/nix/nix.conf
+sudo pkill nix-daemon
+```
 
 ## FAQ
 
