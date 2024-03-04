@@ -20,7 +20,7 @@
           # $HOME.
           #
           # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-          imports = [ ../home.nix ];
+          imports = [ ../home ];
           home.username = self.nix-dev-home.username;
           home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${self.nix-dev-home.username}";
           home.stateVersion = "22.11";

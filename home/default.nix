@@ -1,8 +1,8 @@
 { flake, pkgs, ... }:
 {
   imports = [
-    flake.inputs.nix-index-database.hmModules.nix-index
-    flake.inputs.nixvim.homeManagerModules.nixvim
+    ./nix-index.nix
+    ./neovim.nix # Uncomment this if you do not want to setup Neovim.
   ];
 
   # Recommended Nix settings
@@ -77,15 +77,6 @@
     jq.enable = true;
     htop.enable = true;
 
-    # command-not-found handler to suggest nix way of installing stuff.
-    # FIXME: This ought to show new nix cli commands though:
-    # https://github.com/nix-community/nix-index/issues/191
-    nix-index = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    # nix-index-database.comma.enable = true;
-
     starship = {
       enable = true;
       settings = {
@@ -102,35 +93,6 @@
           format = "on [$hostname](bold red) ";
           trim_at = ".local";
           disabled = false;
-        };
-      };
-    };
-
-    nixvim = {
-      enable = true;
-
-      colorschemes.ayu.enable = true;
-      options = {
-        expandtab = true;
-        shiftwidth = 4;
-        smartindent = true;
-        tabstop = 4;
-      };
-      plugins = {
-        lightline.enable = true;
-        treesitter.enable = true;
-        lsp = {
-          enable = true;
-          servers = {
-            hls.enable = true;
-            marksman.enable = true;
-            nil_ls.enable = true;
-            rust-analyzer = {
-              enable = true;
-              installCargo = false;
-              installRustc = false;
-            };
-          };
         };
       };
     };
