@@ -26,7 +26,6 @@
         ./nix/toplevel.nix
       ];
 
-      # TODO: Change this to your username
       flake.nix-dev-home.username = "runner";
 
       perSystem = { self', pkgs, ... }: {
