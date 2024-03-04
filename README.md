@@ -12,7 +12,7 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
     nix flake init -t github:juspay/nix-dev-home
     nix run nixpkgs#sd "runner" "$USER" flake.nix
     ```
-    - Optionally, you may edit `./home./default.nix` to your liking.
+    - Optionally, you may edit `./home/default.nix` to your liking.
 1. Run `nix run`[^home-modify] to activate your configuration.
 1. Restart your terminal. 
 
