@@ -12,8 +12,6 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         # Replace this URL with your repo URL
         git clone https://github.com/user/nixconfig.git
         cd nixconfig
-        # Update to latest software
-        nix flake update
         ```
     1. Or, run `nix flake init` on an empty directory
         ```sh-session
@@ -21,8 +19,12 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         cd nixconfig
         nix flake init -t github:juspay/nix-dev-home
         ```
-1. Open `flake.nix` and set `flake.nix-dev-home.username` to your user name. You can use `echo $USER` to get your user name.[^runner]
-    - Optionally, you may edit `./home./default.nix` to your liking.
+1. Open `flake.nix` and set `flake.nix-dev-home.username` to your user name.[^runner]
+    ```sh-session
+    # You can also automate this by running
+    nix run nixpkgs#sd "runner" "$USER" flake.nix
+    ```
+1. Optionally, you may edit `./home./default.nix` to your liking.
 1. Run either `nix run` or `nix develop -c just run` to activate your configuration.
 1. Restart your terminal. 
     - Expect to see the [starship](https://starship.rs/) prompt. When you `cd` into a project containing `.envrc` configured for flakes (such as this very repository), you should automatically be put in the `nix develop` shell along with a change to the starship prompt indicating the same. If not, run `direnv allow` once.
