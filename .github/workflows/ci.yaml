@@ -2,19 +2,23 @@ name: "CI"
 on:
   push:
     branches:
-      - '*'
+      - main
   pull_request:
 jobs:
-  nix:
-    runs-on: ubuntu-latest
+  checks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, macos-14]
     steps:
       - uses: actions/checkout@v3
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@main
         with:
-          name: srid
-      - name: Build
-        run: |
-          nix run github:srid/nixci
-          
+          extra-conf: |
+            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://cache.garnix.io?priority=41 https://cache.nixos.org/
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: yaxitech/nix-install-pkgs-action@v3
+        with:
+          packages: "github:srid/nixci"
+      - run: nixci
