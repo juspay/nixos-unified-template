@@ -8,7 +8,7 @@
       filter = path: _: with inputs.nixpkgs.lib;
         !(hasSuffix "LICENSE" path ||
           hasSuffix "README.md" path ||
-          hasSuffix "flake.lock" path);
+          hasSuffix ".github/workflows/update-flake-lock.yaml" path);
     };
   };
 }
