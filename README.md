@@ -21,7 +21,7 @@ Before proceeding, [install Nix](https://nixos.asia/en/install) first.
         cd nixconfig
         nix flake init -t github:juspay/nix-dev-home
         ```
-1. Open `config.nix` and set `myUserName` to your user name. You can use `echo $USER` to get your user name.[^runner]
+1. Open `flake.nix` and set `flake.nix-dev-home.username` to your user name. You can use `echo $USER` to get your user name.[^runner]
     - Optionally, you may edit `./home.nix` to your liking.
 1. Run either `nix run` or `nix develop -c just run` to activate your configuration.
 1. Restart your terminal. 
