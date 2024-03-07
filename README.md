@@ -14,6 +14,7 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
     ```
     - Optionally, you may edit `./home/default.nix` to your liking.
 1. Run `nix run`[^home-modify] to activate your configuration.
+    - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal. 
 
 After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt. 
