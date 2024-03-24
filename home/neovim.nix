@@ -17,6 +17,7 @@
       smartindent = true;
       tabstop = 2;
       number = true;
+      clipboard = "unnamedplus";
     };
 
     # Keymaps
