@@ -52,6 +52,10 @@
             desc = "file finder";
             action = "find_files";
           };
+          "<leader>fg" = {
+            desc = "find via grep";
+            action = "live_grep";
+          };
         };
         extensions = {
           file_browser.enable = true;
