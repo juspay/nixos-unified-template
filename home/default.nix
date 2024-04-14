@@ -2,7 +2,7 @@
 {
   imports = [
     ./nix-index.nix
-    ./neovim.nix # Uncomment this if you do not want to setup Neovim.
+    ./neovim.nix # Comment this out if you do not want to setup Neovim.
   ];
 
   # Recommended Nix settings
@@ -74,7 +74,7 @@
       '';
     };
 
-    # Better `cd`
+    # Better `cat`
     bat.enable = true;
     # Type `z <pat>` to cd to some directory
     zoxide.enable = true;
