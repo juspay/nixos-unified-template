@@ -52,7 +52,7 @@ runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-ho
 
 If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
 
-To browse the capabilities of home-manager (and to see what else can go in your `./home/default.nix` -- such as shell aliases), consult [https://nix-community.github.io/home-manager/options.html](https://nix-community.github.io/home-manager/options.html). You can also run `man home-configuration.nix` in the terminal.
+To browse the capabilities of home-manager (and to see what else can go in your `./home/default.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
 
 ## Troubleshooting
 
@@ -66,7 +66,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 **Problem**: Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
 
-**Solution**: Delete those existing dotfiles (take a backup first), and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)) and may also include your existing dotfile verbatim.
+**Solution**: Delete those existing dotfiles (take a backup first), and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.envExtra)) and may also include your existing dotfile verbatim.
 
 ### Cannot use cache / cachix
 
