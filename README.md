@@ -66,7 +66,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 **Problem**: Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
 
-**Solution**: Delete those existing dotfiles, and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)).
+**Solution**: Delete those existing dotfiles (take a backup first), and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.envExtra)) and may also include your existing dotfile verbatim.
 
 ### Cannot use cache / cachix
 
