@@ -4,6 +4,8 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
 
 ## Getting Started
 
+NOTE: These instructions do not apply if you use NixOS.
+
 1. [Install Nix](https://nixos.asia/en/install).
 1. Initialize your home-manager config using this repo as template:
     ```sh-session
