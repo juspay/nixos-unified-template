@@ -1,3 +1,5 @@
+[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://nixos.zulipchat.com/#narrow/stream/413950-nix)
+
 # nix-dev-home
 
 A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. See [`home/default.nix`](home/default.nix) to see what's available.
