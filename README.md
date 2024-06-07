@@ -9,15 +9,7 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
 NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/nixos-tutorial).
 
 1. [Install Nix](https://nixos.asia/en/install).
-1. Initialize your home-manager config using this repo as template:
-    ```sh-session
-    mkdir ~/nixconfig 
-    cd ~/nixconfig
-    nix flake init -t github:juspay/nix-dev-home
-    nix run .#sd "runner" "$USER" flake.nix
-    ```
-    - Optionally, you may edit `./home/default.nix` to your liking.
-        - In particular, for Git to be able to commit, you must set your name and email here: https://github.com/juspay/nix-dev-home/blob/191cbd4299bf5a5be8814b3629bfdec111189b75/home/default.nix#L115-L116
+1. Run `nix run github:juspay/flakreate github:juspay/nix-dev-home`[^flakreate] (WIP: This command doesn't work yet)
 1. Run `nix run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal. 
@@ -94,3 +86,17 @@ You can embed this configuration inside your NixOS configuration, and thus share
 ### `/nix/store` garbage collection
 
 By default garbage collection is run automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv?tab=readme-ov-file#nix-direnv)).
+
+[^flakreate]: 
+    If this command fails for whatever reason reason, please [file an issue here] and then try the manual approach:
+
+    Initialize your home-manager config using this repo as template:
+    
+    ```sh-session
+    mkdir ~/nixconfig 
+    cd ~/nixconfig
+    nix flake init -t github:juspay/nix-dev-home
+    nix run .#sd "runner" "$USER" flake.nix
+    ```
+    
+    Optionally, you may edit `./home/default.nix` to your liking. In particular, for Git to be able to commit, you must set your name and email [here](https://github.com/juspay/nix-dev-home/blob/191cbd4299bf5a5be8814b3629bfdec111189b75/home/default.nix#L115-L116).
