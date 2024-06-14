@@ -6,7 +6,9 @@ A [`home-manager`](https://github.com/nix-community/home-manager) template provi
 
 ## Getting Started
 
-NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/nixos-tutorial).
+NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/nixos-tutorial).[^nixos-flake]
+
+[^nixos-flake]: If you use NixOS, you can adapt the [NixOS template of `nixos-flake`](https://community.flake.parts/nixos-flake/templates#nixos) by using configuration from this repo.
 
 1. [Install Nix](https://nixos.asia/en/install).
 1. Initialize your home-manager config using this repo as template:
