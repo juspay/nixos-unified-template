@@ -83,7 +83,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 ```sh
 mkdir -p ~/.config/nix
-echo "trusted-users = root $USER" > $HOME/.config/nix/nix.conf
+echo "trusted-users = root $USER" >> $HOME/.config/nix/nix.conf
 sudo pkill nix-daemon
 ```
 
