@@ -68,7 +68,7 @@
         servers = {
           hls.enable = true;
           marksman.enable = true;
-          nil_ls.enable = true;
+          nil-ls.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = false;
