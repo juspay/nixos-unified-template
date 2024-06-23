@@ -5,20 +5,13 @@ on:
       - main
   pull_request:
 jobs:
-  checks:
-    runs-on: ${{ matrix.os }}
+  nix:
+    runs-on: ${{ matrix.system }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, macos-14]
+        system: [aarch64-darwin, x86_64-darwin, x86_64-linux]
+      fail-fast: false
     steps:
-      - uses: actions/checkout@v3
-      - uses: DeterminateSystems/nix-installer-action@main
-        with:
-          extra-conf: |
-            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-            substituters = https://cache.garnix.io?priority=41 https://cache.nixos.org/
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: yaxitech/nix-install-pkgs-action@v3
-        with:
-          packages: "github:srid/nixci"
-      - run: nixci build
+      - uses: actions/checkout@v4
+      - name: nixci
+        run: nixci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" build --systems "${{ matrix.system }}"
