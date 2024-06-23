@@ -5,20 +5,27 @@ on:
       - main
   pull_request:
 jobs:
-  checks:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, macos-14]
+  configure:
+    runs-on: x86_64-linux
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: DeterminateSystems/nix-installer-action@main
-        with:
-          extra-conf: |
-            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-            substituters = https://cache.garnix.io?priority=41 https://cache.nixos.org/
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: yaxitech/nix-install-pkgs-action@v3
-        with:
-          packages: "github:srid/nixci"
-      - run: nixci build
+     - uses: actions/checkout@v4
+     - id: set-matrix
+       run: echo "matrix=$(nixci gh-matrix --systems=x86_64-linux,x86_64-darwin,aarch64-darwin | jq -c .)" >> $GITHUB_OUTPUT
+  nix:
+    runs-on: ${{ matrix.system }}
+    permissions:
+      contents: read
+    needs: configure
+    strategy:
+      matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          nixci \
+            --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
+            build \
+            --systems "github:nix-systems/${{ matrix.system }}" \
+            .#default.${{ matrix.subflake}}
