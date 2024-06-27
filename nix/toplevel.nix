@@ -27,7 +27,12 @@
         });
 
     # Enables 'nix run' to activate.
-    apps.default.program = self'.packages.activate-home;
+    apps.default.program = pkgs.writeShellApplication {
+      name = "activate";
+      text = ''
+        ${lib.getExe self'.packages.activate} "$USER"@;
+      '';
+    };
 
     # Enable 'nix build' to build the home configuration, but without
     # activating.
