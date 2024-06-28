@@ -30,7 +30,8 @@
     apps.default.program = pkgs.writeShellApplication {
       name = "activate";
       text = ''
-        ${lib.getExe self'.packages.activate} "$USER"@;
+        set -x
+        ${lib.getExe self'.packages.activate} "${self.nix-dev-home.username}"@;
       '';
     };
 
