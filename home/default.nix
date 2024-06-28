@@ -30,6 +30,7 @@
     fd
     sd
     tree
+    btop
 
     # Nix dev
     cachix
@@ -81,7 +82,6 @@
     # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
     jq.enable = true;
-    htop.enable = true;
 
     starship = {
       enable = true;
