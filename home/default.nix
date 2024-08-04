@@ -36,7 +36,6 @@
     nil # Nix language server
     nix-info
     nixpkgs-fmt
-    nixci
     nix-health
 
     # Dev
