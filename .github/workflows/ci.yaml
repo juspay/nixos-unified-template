@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - update_flake_lock_action
   pull_request:
 jobs:
   nix:
@@ -13,5 +14,5 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
-      - name: nixci
-        run: nixci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" build --systems "${{ matrix.system }}"
+      - name: om ci
+        run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" build --systems "${{ matrix.system }}"
