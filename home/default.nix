@@ -25,17 +25,6 @@
     };
   };
 
-  # nixpkgs settings
-  nixpkgs = {
-    overlays = [
-      # Add a package to nixpkgs
-      (final: prev: {
-        # Omnix is not yet upstreamed
-        omnix = flake.inputs.omnix.packages.${pkgs.system}.default;
-      })
-    ];
-  };
-
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages
@@ -51,7 +40,8 @@
     nil # Nix language server
     nix-info
     nixpkgs-fmt
-    omnix
+    # un-comment after `omnix` is upstreamed
+    # omnix
 
     # Dev
     tmate
