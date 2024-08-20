@@ -1,4 +1,9 @@
 {
+  nixConfig = {
+    extra-substituters = "https://om.cachix.org";
+    extra-trusted-public-keys = "om.cachix.org-1:ifal/RLZJKN4sbpScyPGqJ2+appCslzu7ZZF/C01f2Q=";
+  };
+
   description = "A home-manager template providing useful tools & settings for Nix-based development";
 
   inputs = {

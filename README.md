@@ -20,7 +20,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
     ```
     - Optionally, you may edit `./home/default.nix` to your liking.
         - In particular, for Git to be able to commit, you must set your name and email here: https://github.com/juspay/nix-dev-home/blob/191cbd4299bf5a5be8814b3629bfdec111189b75/home/default.nix#L115-L116
-1. Run `nix run`[^home-modify] to activate your configuration.
+1. Run `nix --accept-flake-config run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal.
 
