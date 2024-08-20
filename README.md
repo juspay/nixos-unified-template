@@ -13,7 +13,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 1. [Install Nix](https://nixos.asia/en/install).
 1. Initialize your home-manager config using this repo as template:
     ```sh-session
-    mkdir ~/nixconfig 
+    mkdir ~/nixconfig
     cd ~/nixconfig
     nix flake init -t github:juspay/nix-dev-home
     nix run .#sd "runner" "$USER" flake.nix
@@ -22,9 +22,9 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
         - In particular, for Git to be able to commit, you must set your name and email here: https://github.com/juspay/nix-dev-home/blob/191cbd4299bf5a5be8814b3629bfdec111189b75/home/default.nix#L115-L116
 1. Run `nix run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
-1. Restart your terminal. 
+1. Restart your terminal.
 
-After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt. 
+After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt.
 
 Anytime you modify your home configuration in `./home/*.nix`, re-run `nix run` to activate the new configuration.
 
@@ -37,7 +37,7 @@ A sample demo of the setup process is shown below:
 
 [^home-modify]: Executing this step will modify the contents of your `$HOME` directory. You will be [warned before overwriting](https://nix-community.github.io/home-manager/index.html#sec-usage-dotfiles), but not before creating links to newly created configuration files in the nix store. Since home-manager does not currently provide an integrated and automated feature to eliminate the links it creates, be aware that if you would like to reverse this operation, you will need to curate your home directory manually.
 
-## Details 
+## Details
 
 The configuration repo has `flake.nix` file in the current directory and a `./home/default.nix` file containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
@@ -51,8 +51,8 @@ You can then execute `nix develop`, to ensure you are in the development shell w
 (nix:nix-dev-home-env) > rm ~/.bashrc ~/.profile && just run && direnv allow
 (nix:nix-dev-home-env) > exit
 > bash
-runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-home-env) 
-⬢ [Docker] ❯ 
+runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-home-env)
+⬢ [Docker] ❯
 ```
 
 </details>
