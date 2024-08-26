@@ -1,4 +1,4 @@
-{ flake, config, pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   imports = [
     ./nix-index.nix
@@ -121,7 +121,6 @@
     # https://nixos.asia/en/direnv
     direnv = {
       enable = true;
-      package = config.nix.package;
       nix-direnv.enable = true;
       config.global = {
         # Make direnv messages less verbose
