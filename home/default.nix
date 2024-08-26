@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, config, pkgs, ... }:
 {
   imports = [
     ./nix-index.nix
