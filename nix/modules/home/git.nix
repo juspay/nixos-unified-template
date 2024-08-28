@@ -6,19 +6,21 @@
   };
 
   # https://nixos.asia/en/git
-  programs.git = {
-    enable = true;
-    # userName = "John Doe";
-    # userEmail = "johndoe@example.com";
-    ignores = [ "*~" "*.swp" ];
-    aliases = {
-      ci = "commit";
+  programs = {
+    git = {
+      enable = true;
+      # userName = "John Doe";
+      # userEmail = "johndoe@example.com";
+      ignores = [ "*~" "*.swp" ];
+      aliases = {
+        ci = "commit";
+      };
+      extraConfig = {
+        # init.defaultBranch = "master";
+        # pull.rebase = "false";
+      };
     };
-    extraConfig = {
-      # init.defaultBranch = "master";
-      # pull.rebase = "false";
-    };
+    lazygit.enable = true;
   };
-  lazygit.enable = true;
 
 }
