@@ -28,8 +28,8 @@
       systems = import inputs.systems;
       imports = [
         inputs.nixos-flake.flakeModule
-        ./nix/template.nix
-        ./nix/toplevel.nix
+        ./nix/modules/flake-parts/template.nix
+        ./nix/modules/flake-parts/toplevel.nix
       ];
 
       flake.nix-dev-home.username = "runner";
@@ -39,7 +39,7 @@
 
         devShells.default = pkgs.mkShell {
           name = "nix-dev-home";
-          nativeBuildInputs = with pkgs; [ just ];
+          nativeBuildInputs = with pkgs; [ just nixd ];
         };
       };
     };
