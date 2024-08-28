@@ -1,3 +1,4 @@
+# Neovim configuration managed using https://github.com/nix-community/nixvim
 { flake, ... }:
 {
   imports = [

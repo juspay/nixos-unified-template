@@ -16,11 +16,13 @@
       inputs.self.nixos-flake.lib.mkHomeConfiguration
         pkgs
         ({ pkgs, ... }: {
-          # Edit the contents of the ./home directory to install packages and modify dotfile configuration in your
-          # $HOME.
+          # Edit the contents of the nix/modules/home directory to install packages and modify dotfile configuration in your $HOME.
           #
-          # https://nix-community.github.io/home-manager/index.html#sec-usage-configuration
-          imports = [ ../home ];
+          # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-configuration
+          imports = with builtins;
+            map
+              (fn: ../home/${fn})
+              (attrNames (readDir ../home));
           home.username = self.nix-dev-home.username;
           home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${self.nix-dev-home.username}";
           home.stateVersion = "22.11";
