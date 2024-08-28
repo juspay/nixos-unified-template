@@ -26,7 +26,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 
 After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt.
 
-Anytime you modify your home configuration in `./home/*.nix`, re-run `nix run` to activate the new configuration.
+Anytime you modify your home configuration in `./nix/modules/home/*.nix`, re-run `nix run` to activate the new configuration.
 
 ### Demo
 
@@ -39,7 +39,7 @@ A sample demo of the setup process is shown below:
 
 ## Details
 
-The configuration repo has `flake.nix` file in the current directory and a `./home/default.nix` file containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and some `./nix/modules/home/*.nix` files containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
 You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` to activate this configuration in your `$HOME`. On most systems you are likely to experience at least one of the issues mentioned below in [Troubleshooting](#troubleshooting). A more complete sequence might be
 <details>
