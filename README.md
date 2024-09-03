@@ -16,7 +16,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
     mkdir ~/nixconfig
     cd ~/nixconfig
     nix flake init -t github:juspay/nix-dev-home
-    nix run .#sd "runner" "$USER" flake.nix
+    nix run .#sd "runner" "$(whoami)" flake.nix
     ```
     - Optionally, you may edit `./nix/modules/home/*.nix` to your liking.
         - In particular, for Git to be able to commit, you must set your name and email in `git.nix`.
@@ -67,7 +67,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 **Problem**: `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
 
-**Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$USER/ && sudo chown $USER /nix/var/nix/profiles/per-user/$USER` and try again.
+**Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
 
 ### `Existing file ... is in the way of ...`
 
@@ -83,7 +83,7 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 ```sh
 mkdir -p ~/.config/nix
-echo "trusted-users = root $USER" >> $HOME/.config/nix/nix.conf
+echo "trusted-users = root $(whoami)" >> $HOME/.config/nix/nix.conf
 sudo pkill nix-daemon
 ```
 
