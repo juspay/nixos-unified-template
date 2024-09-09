@@ -6,7 +6,7 @@
     welcomeText = ''
       You have just created a home-manager flake.nix.
 
-      - Edit `home/modules/home/*.nix` to customize your home-manager configuration.
+      - Edit `nix/modules/home/*.nix` to customize your home-manager configuration.
       - Run `nix run` to apply the configuration.
 
       Enjoy!
