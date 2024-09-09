@@ -11,22 +11,30 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 [^nixos-flake]: If you use NixOS, you can adapt the [NixOS template of `nixos-flake`](https://community.flake.parts/nixos-flake/templates#nixos) by using configuration from this repo.
 
 1. [Install Nix](https://nixos.asia/en/install).
-1. Initialize your home-manager config using this repo as template:
+1. Initialize[^omnix] your home-manager config using this repo as template:
     ```sh-session
-    mkdir ~/nixconfig
-    cd ~/nixconfig
-    nix flake init -t github:juspay/nix-dev-home
-    nix run .#sd "runner" "$(whoami)" flake.nix
+    mkdir ~/nixconfig && cd ~/nixconfig
+    nix --accept-flake-config run github:juspay/omnix -- init nix-dev-home -o .
     ```
+    <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
+    
     - Optionally, you may edit `./nix/modules/home/*.nix` to your liking.
-        - In particular, for Git to be able to commit, you must set your name and email in `git.nix`.
 1. Run `nix --accept-flake-config run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal.
 
-After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt.
+After steps 1-4, you should expect to see the [starship](https://starship.rs/) prompt:
+
+<img width="236" alt="image" src="https://github.com/user-attachments/assets/bea3a7e5-b06a-483f-b76b-5c3865ce5e55">
 
 Anytime you modify your home configuration in `./nix/modules/home/*.nix`, re-run `nix run` to activate the new configuration.
+
+[^omnix]: We use [omnix](https://omnix.page/om/init.html). Alternatively, you may wish to initialize manually as follows. But you must set your name and email in `git.nix` for Git to be able to commit.
+
+    ```
+    nix flake init -t github:juspay/nix-dev-home
+    nix run .#sd "runner" "$(whoami)" flake.nix
+    ```
 
 ### Demo
 
