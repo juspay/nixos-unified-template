@@ -37,6 +37,12 @@
       perSystem = { self', pkgs, ... }: {
         formatter = pkgs.nixpkgs-fmt;
 
+        packages.neovim =
+          inputs.nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
+            inherit pkgs;
+            module = import ./nix/modules/home/neovim.nix;
+          };
+
         devShells.default = pkgs.mkShell {
           name = "nix-dev-home";
           nativeBuildInputs = with pkgs; [ just nixd ];
