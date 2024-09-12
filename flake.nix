@@ -40,7 +40,7 @@
         packages.neovim =
           inputs.nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
             inherit pkgs;
-            module = import ./nix/modules/home/neovim.nix;
+            module = import ./nix/pkgs/neovim.nix;
           };
 
         devShells.default = pkgs.mkShell {

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, flake, ... }: {
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages
@@ -23,6 +22,9 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+
+    # nixvim package config
+    flake.self.packages.${pkgs.system}.neovim
   ];
 
   # Programs natively supported by home-manager.
