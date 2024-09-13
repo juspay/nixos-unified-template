@@ -42,7 +42,12 @@
 
     # Enable 'nix build' to build the home configuration, but without
     # activating.
-    packages.default = self'.legacyPackages.homeConfigurations.${self.nix-dev-home.username}.activationPackage;
+    packages.default =
+      let pkg = self'.legacyPackages.homeConfigurations.${self.nix-dev-home.username}.activationPackage;
+      in pkg.overrideAttrs (oldAttrs: {
+        meta.description = "Built home configuration for user '${self.nix-dev-home.username}'";
+      });
+
 
     # For 'nix fmt'
     formatter = pkgs.nixpkgs-fmt;
