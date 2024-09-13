@@ -26,12 +26,11 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
-      imports = [
-        inputs.nixos-flake.flakeModule
-        ./nix/modules/flake-parts/template.nix
-        ./nix/modules/flake-parts/toplevel.nix
-        ./nix/modules/flake-parts/neovim.nix
-      ];
+      # See ./nix/modules/flake-parts/*.nix for the modules that are imported here.
+      imports = with builtins;
+        map
+          (fn: ./nix/modules/flake-parts/${fn})
+          (attrNames (readDir ./nix/modules/flake-parts));
 
       flake = {
         nix-dev-home.username = "runner";

@@ -2,6 +2,9 @@
 { self, inputs, lib, ... }:
 
 {
+  imports = [
+    inputs.nixos-flake.flakeModule
+  ];
   flake = {
     # cf. https://nixos.asia/en/nix-modules
     options = {
