@@ -29,16 +29,22 @@
         });
 
     # Enables 'nix run' to activate.
-    apps.default.program = pkgs.writeShellApplication {
-      name = "activate";
-      text = ''
-        set -x
-        ${lib.getExe self'.packages.activate} "${self.nix-dev-home.username}"@;
-      '';
+    apps.default = {
+      inherit (self'.packages.activate) meta;
+      program = pkgs.writeShellApplication {
+        name = "activate";
+        text = ''
+          set -x
+          ${lib.getExe self'.packages.activate} "${self.nix-dev-home.username}"@;
+        '';
+      };
     };
 
     # Enable 'nix build' to build the home configuration, but without
     # activating.
     packages.default = self'.legacyPackages.homeConfigurations.${self.nix-dev-home.username}.activationPackage;
+
+    # For 'nix fmt'
+    formatter = pkgs.nixpkgs-fmt;
   };
 }
