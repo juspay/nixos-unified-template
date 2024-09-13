@@ -1,7 +1,8 @@
-{ inputs, ... }: {
-  perSystem = { pkgs, ... }: {
+{ inputs, ... }:
+{
+  perSystem = { pkgs, system, ... }: {
     packages.neovim =
-      inputs.nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
+      inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
         inherit pkgs;
         module = import ../home/neovim/nixvim.nix;
       };
