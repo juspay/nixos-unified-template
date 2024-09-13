@@ -33,14 +33,19 @@
         ./nix/modules/flake-parts/neovim.nix
       ];
 
-      flake.nix-dev-home.username = "runner";
+      flake = {
+        nix-dev-home.username = "runner";
+      };
 
       perSystem = { self', pkgs, ... }: {
         formatter = pkgs.nixpkgs-fmt;
 
         devShells.default = pkgs.mkShell {
-          name = "nix-dev-home";
-          nativeBuildInputs = with pkgs; [ just nixd ];
+          name = "nix-dev-home-shell";
+          packages = with pkgs; [
+            just
+            nixd
+          ];
         };
       };
     };
