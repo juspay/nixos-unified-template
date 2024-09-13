@@ -30,18 +30,13 @@
         inputs.nixos-flake.flakeModule
         ./nix/modules/flake-parts/template.nix
         ./nix/modules/flake-parts/toplevel.nix
+        ./nix/modules/flake-parts/neovim.nix
       ];
 
       flake.nix-dev-home.username = "runner";
 
       perSystem = { self', pkgs, ... }: {
         formatter = pkgs.nixpkgs-fmt;
-
-        packages.neovim =
-          inputs.nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
-            inherit pkgs;
-            module = import ./nix/pkgs/neovim.nix;
-          };
 
         devShells.default = pkgs.mkShell {
           name = "nix-dev-home";
