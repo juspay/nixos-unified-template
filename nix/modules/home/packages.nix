@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   # Nix packages to install to $HOME
   #
