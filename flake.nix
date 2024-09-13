@@ -30,6 +30,7 @@
         inputs.nixos-flake.flakeModule
         ./nix/modules/flake-parts/template.nix
         ./nix/modules/flake-parts/toplevel.nix
+        ./nix/modules/flake-parts/neovim.nix
       ];
 
       flake.nix-dev-home.username = "runner";
