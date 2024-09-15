@@ -9,7 +9,9 @@
     in
     {
       packages.neovim = neovimWithConfig.overrideAttrs (oa: {
-        meta.description = "Neovim with NixVim configuration";
+        meta = oa.meta // {
+          description = "Neovim with NixVim configuration";
+        };
       });
     };
 }
