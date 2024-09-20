@@ -14,7 +14,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 1. Initialize[^omnix] your home-manager config using this repo as template:
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
-    nix --accept-flake-config run github:juspay/omnix -- init nix-dev-home -o .
+    nix --accept-flake-config run github:juspay/omnix -- init github:juspay/nix-dev-home -o .
     ```
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
     
