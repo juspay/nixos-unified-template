@@ -20,7 +20,7 @@
             hasSuffix ".github/" path);
       };
     };
-  
+
     # https://omnix.page/om/init.html#spec
     om.templates.nix-dev-home = {
       template = templates.default;
