@@ -17,7 +17,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
     nix --accept-flake-config run github:juspay/omnix -- init github:juspay/nix-dev-home -o .
     ```
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
-    
+
     - Optionally, you may edit `./nix/modules/home/*.nix` to your liking.
 1. Run `nix --accept-flake-config run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
@@ -35,13 +35,6 @@ Anytime you modify your home configuration in `./nix/modules/home/*.nix`, re-run
     nix flake init -t github:juspay/nix-dev-home
     nix run .#sd "runner" "$(whoami)" flake.nix
     ```
-
-### Demo
-
-A sample demo of the setup process is shown below:
-
-[![asciicast](https://asciinema.org/a/572907.svg)](https://asciinema.org/a/572907)
-
 
 [^home-modify]: Executing this step will modify the contents of your `$HOME` directory. You will be [warned before overwriting](https://nix-community.github.io/home-manager/index.html#sec-usage-dotfiles), but not before creating links to newly created configuration files in the nix store. Since home-manager does not currently provide an integrated and automated feature to eliminate the links it creates, be aware that if you would like to reverse this operation, you will need to curate your home directory manually.
 
