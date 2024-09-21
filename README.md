@@ -19,7 +19,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
 
     - Optionally, you may edit `./nix/modules/home/*.nix` to your liking.
-1. Run `nix --accept-flake-config run`[^home-modify] to activate your configuration.
+1. Run `nix run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal.
 

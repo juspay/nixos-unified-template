@@ -1,9 +1,4 @@
 {
-  nixConfig = {
-    extra-substituters = "https://om.cachix.org";
-    extra-trusted-public-keys = "om.cachix.org-1:ifal/RLZJKN4sbpScyPGqJ2+appCslzu7ZZF/C01f2Q=";
-  };
-
   description = "A home-manager template providing useful tools & settings for Nix-based development";
 
   inputs = {
@@ -20,7 +15,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    omnix.url = "github:juspay/omnix";
   };
 
   outputs = inputs:

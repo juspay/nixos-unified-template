@@ -25,8 +25,6 @@
     overlays = [
       # Add a package to nixpkgs
       (final: prev: {
-        # Omnix is not yet upstreamed
-        omnix = flake.inputs.omnix.packages.${pkgs.system}.default;
       })
     ];
   };
