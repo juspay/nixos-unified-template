@@ -15,7 +15,6 @@
     nil # Nix language server
     nix-info
     nixpkgs-fmt
-    omnix
 
     # Dev
     tmate
