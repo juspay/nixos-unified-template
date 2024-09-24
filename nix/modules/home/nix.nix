@@ -1,5 +1,8 @@
 { flake, pkgs, ... }:
 {
+  # Install stable version of Nix in PATH
+  home.packages = [ pkgs.nix ];
+
   # Recommended Nix settings
   nix = {
     # Which Nix version to use
@@ -24,8 +27,7 @@
   nixpkgs = {
     overlays = [
       # Add a package to nixpkgs
-      (final: prev: {
-      })
+      (final: prev: { })
     ];
   };
 }
