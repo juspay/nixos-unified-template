@@ -7,7 +7,9 @@
   nix = {
     # Which Nix version to use
     # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=nix
-    package = pkgs.nix;
+    #
+    # We use latest, to be in sync with what DetSys installs (and for compatibility with the nix.conf it generates globally)
+    package = pkgs.nixVersions.latest;
 
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # https://yusef.napora.org/blog/pinning-nixpkgs-flake/
 
