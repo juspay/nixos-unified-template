@@ -1,7 +1,7 @@
-{ flake, pkgs, ... }:
+{ config, flake, pkgs, ... }:
 {
   # Install stable version of Nix in PATH
-  home.packages = [ pkgs.nix ];
+  home.packages = [ config.nix.package ];
 
   # Recommended Nix settings
   nix = {
