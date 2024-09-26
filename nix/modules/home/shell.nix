@@ -1,13 +1,5 @@
 { ... }:
 {
-  # Make Nix and home-manager installed things available in PATH.
-  home.sessionPath = [
-    "$HOME/.nix-profile/bin"
-    "/etc/profiles/per-user/$USER/bin"
-    "/nix/var/nix/profiles/default/bin"
-    "/run/current-system/sw/bin/"
-  ];
-
   programs = {
     # on macOS, you probably don't need this
     bash = {
