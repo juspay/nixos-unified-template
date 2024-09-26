@@ -26,10 +26,6 @@
           (fn: ./nix/modules/flake-parts/${fn})
           (attrNames (readDir ./nix/modules/flake-parts));
 
-      flake = {
-        nix-dev-home.username = "runner";
-      };
-
       perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShell {
           name = "nix-dev-home-shell";

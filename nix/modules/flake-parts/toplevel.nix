@@ -5,17 +5,8 @@
   imports = [
     inputs.nixos-flake.flakeModule
   ];
-  flake = {
-    # cf. https://nixos.asia/en/nix-modules
-    options = {
-      nix-dev-home.username = lib.mkOption {
-        type = lib.types.str;
-        description = "The username to use for the home-manager configuration";
-      };
-    };
-  };
   perSystem = { self', pkgs, ... }: {
-    legacyPackages.homeConfigurations.${self.nix-dev-home.username} =
+    legacyPackages.homeConfigurations."runner" =
       inputs.self.nixos-flake.lib.mkHomeConfiguration
         pkgs
         ({ pkgs, ... }: {
@@ -26,8 +17,8 @@
             map
               (fn: ../home/${fn})
               (attrNames (readDir ../home));
-          home.username = self.nix-dev-home.username;
-          home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${self.nix-dev-home.username}";
+          home.username = "runner";
+          home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/runner";
           home.stateVersion = "22.11";
         });
 
@@ -38,7 +29,7 @@
         name = "activate";
         text = ''
           set -x
-          ${lib.getExe self'.packages.activate} "${self.nix-dev-home.username}"@;
+          ${lib.getExe self'.packages.activate} "runner"@;
         '';
       };
     };
@@ -46,9 +37,9 @@
     # Enable 'nix build' to build the home configuration, but without
     # activating.
     packages.default =
-      let pkg = self'.legacyPackages.homeConfigurations.${self.nix-dev-home.username}.activationPackage;
+      let pkg = self'.legacyPackages.homeConfigurations."runner".activationPackage;
       in pkg.overrideAttrs (oldAttrs: {
-        meta.description = "Built home configuration for user '${self.nix-dev-home.username}'";
+        meta.description = "Built home configuration for user 'runner'";
       });
 
 
