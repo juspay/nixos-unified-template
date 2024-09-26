@@ -1,5 +1,5 @@
 # Like GNU `make`, but `just` rustier.
-# https://just.systems/man/en/chapter_19.html
+# https://just.systems/
 # run `just` from this directory to see available commands
 
 NIXOPTS := "--accept-flake-config"
