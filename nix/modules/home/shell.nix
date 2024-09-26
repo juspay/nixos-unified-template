@@ -1,12 +1,19 @@
 { ... }:
 {
+  # Make Nix and home-manager installed things available in PATH.
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "/etc/profiles/per-user/$USER/bin"
+    "/nix/var/nix/profiles/default/bin"
+    "/run/current-system/sw/bin/"
+  ];
+
   programs = {
     # on macOS, you probably don't need this
     bash = {
       enable = true;
       initExtra = ''
-        # Make Nix and home-manager installed things available in PATH.
-        export PATH=/run/current-system/sw/bin/:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:$PATH
+        # Custom bash profile goes here
       '';
     };
 
@@ -16,8 +23,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
-        # Make Nix and home-manager installed things available in PATH.
-        export PATH=/run/current-system/sw/bin/:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:$PATH
+        # Custom zshrc goes here
       '';
     };
 
