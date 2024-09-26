@@ -25,16 +25,5 @@
         map
           (fn: ./nix/modules/flake-parts/${fn})
           (attrNames (readDir ./nix/modules/flake-parts));
-
-      perSystem = { pkgs, ... }: {
-        devShells.default = pkgs.mkShell {
-          name = "nix-dev-home-shell";
-          meta.description = "Shell environment for modifying this Nix configuration";
-          packages = with pkgs; [
-            just
-            nixd
-          ];
-        };
-      };
     };
 }
