@@ -18,7 +18,7 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
     ```
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
 
-    - Optionally, you may edit `./nix/modules/home/*.nix` to your liking.
+    - Optionally, you may edit `./home/*.nix` to your liking.
 1. Run `nix run`[^home-modify] to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal.
@@ -27,7 +27,7 @@ After steps 1-4, you should expect to see the [starship](https://starship.rs/) p
 
 <img width="236" alt="image" src="https://github.com/user-attachments/assets/bea3a7e5-b06a-483f-b76b-5c3865ce5e55">
 
-Anytime you modify your home configuration in `./nix/modules/home/*.nix`, re-run `nix run` to activate the new configuration.
+Anytime you modify your home configuration in `./home/*.nix`, re-run `nix run` to activate the new configuration.
 
 [^omnix]: We use [omnix](https://omnix.page/om/init.html). Alternatively, you may wish to initialize manually as follows. But you must set your name and email in `git.nix` for Git to be able to commit.
 
@@ -40,7 +40,7 @@ Anytime you modify your home configuration in `./nix/modules/home/*.nix`, re-run
 
 ## Details
 
-The configuration repo has `flake.nix` file in the current directory and some `./nix/modules/home/*.nix` files containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and some `./home/*.nix` files containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
 You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` to activate this configuration in your `$HOME`. On most systems you are likely to experience at least one of the issues mentioned below in [Troubleshooting](#troubleshooting). A more complete sequence might be
 <details>

@@ -6,10 +6,10 @@
       description = "A `home-manager` template providing useful tools & settings for Nix-based development";
       welcomeText = ''
         You have just created a home-manager flake.nix.
-  
-        - Edit `nix/modules/home/*.nix` to customize your home-manager configuration.
+
+        - Edit `./home/*.nix` to customize your home-manager configuration.
         - Run `nix run` to apply the configuration.
-  
+
         Enjoy!
       '';
       path = builtins.path {
