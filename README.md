@@ -2,7 +2,7 @@
 
 # nix-dev-home
 
-A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. See [`home/default.nix`](home/default.nix) to see what's available.
+A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. See [`./home`](home/) to see what's available.
 
 ## Getting Started
 
