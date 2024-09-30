@@ -70,12 +70,6 @@ To browse the capabilities of home-manager (and to see what else can go in your 
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
 
-### `Existing file ... is in the way of ...`
-
-**Problem**: Running `nix run` (home-manager) complains `"Existing file ... is in the way of ..."`
-
-**Solution**: Delete those existing dotfiles (take a backup first), and try again. In home-manager, you can configure your shell directly in Nix (for macOS zsh, this is [`programs.zsh.envExtra`](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zsh.envExtra)) and may also include your existing dotfile verbatim.
-
 ### Cannot use cache / cachix
 
 **Problem**: Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
