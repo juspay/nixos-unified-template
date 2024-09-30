@@ -16,3 +16,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: om ci
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
+      - name: activate-test
+        if: matrix.system == 'x86_64-linux'
+        run: nix run .#test
