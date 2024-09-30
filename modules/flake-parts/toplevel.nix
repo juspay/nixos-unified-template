@@ -46,7 +46,7 @@
           echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
           WORKDIR=$(pwd)
           git add modules/home/test.nix
-          trap 'git -C $WORKDIR rm modules/home/test.nix' EXIT
+          trap 'git -C $WORKDIR rm -f modules/home/test.nix' EXIT
 
           # Activate on a temp location
           rm -rf /tmp/runner
