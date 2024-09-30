@@ -23,7 +23,7 @@
       # See ./flake-parts/*.nix for the modules that are imported here.
       imports = with builtins;
         map
-          (fn: ./flake-parts/${fn})
-          (attrNames (readDir ./flake-parts));
+          (fn: ./modules/flake-parts/${fn})
+          (attrNames (readDir ./modules/flake-parts));
     };
 }
