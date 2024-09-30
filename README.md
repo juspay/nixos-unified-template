@@ -14,7 +14,8 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 1. Initialize[^omnix] your home-manager config using this repo as template:
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
-    nix --accept-flake-config run github:juspay/omnix -- init github:juspay/nix-dev-home -o .
+    nix --accept-flake-config run github:juspay/omnix -- \
+      init github:juspay/nix-dev-home -o .
     ```
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
 
@@ -86,7 +87,7 @@ sudo pkill nix-daemon
 
 ### But I use NixOS
 
-You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of [https://github.com/srid/nixos-flake](https://github.com/srid/nixos-flake) for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead. See also #86.
+You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of [https://github.com/srid/nixos-flake](https://github.com/srid/nixos-flake) for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead. See also https://github.com/juspay/nix-dev-home/issues/86.
 
 ### `/nix/store` garbage collection
 
