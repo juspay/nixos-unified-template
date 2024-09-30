@@ -22,3 +22,4 @@ jobs:
           echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
           git add modules/home/test.nix
           USER=runner HOME=/tmp/runner nix run .#activate 'runner@'
+          nix run nixpkgs#lsd -- --tree /tmp/runner
