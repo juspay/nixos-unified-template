@@ -14,7 +14,7 @@
             (inputs.self + /modules/home)
           ];
           home.username = "runner";
-          home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/runner";
+          home.homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/runner";
           home.stateVersion = "22.11";
         });
 
