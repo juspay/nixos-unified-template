@@ -31,6 +31,7 @@
     };
 
     # Run activation test
+    # FIXME: This is failing on darwin; https://github.com/nix-community/home-manager/issues/4413
     apps.test = {
       meta.description = "Test home configuration activation by running for dummy user and home";
       program = pkgs.writeShellApplication {
