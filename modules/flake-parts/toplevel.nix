@@ -30,6 +30,39 @@
       };
     };
 
+    # Run activation test
+    apps.test = {
+      meta.description = "Test home configuration activation by running for dummy user and home";
+      program = pkgs.writeShellApplication {
+        name = "test-home-activation";
+        runtimeInputs = with pkgs; [
+          git
+          findutils
+          gnugrep
+        ];
+        text = ''
+          set -x
+          # Override the home directory to a temp location
+          echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
+          git add modules/home/test.nix
+          trap 'git rm modules/home/test.nix' EXIT
+
+          # Activate on a temp location
+          rm -rf /tmp/runner
+          USER=runner HOME=/tmp/runner \
+            nix run .#activate 'runner@'
+
+          # List the intresting contents of the activated home
+          find -L /tmp/runner/ | \
+            grep -v \.cache | grep -v /share/ | grep -v /lib/ | grep -v /libexec/ | grep -v /.local/state
+
+          # Run some tests
+          cd /tmp/runner
+          test -f .nix-profile/bin/git
+        '';
+      };
+    };
+
     # Enable 'nix build' to build the home configuration, but without
     # activating.
     packages.default =
