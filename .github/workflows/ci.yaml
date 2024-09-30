@@ -24,7 +24,7 @@ jobs:
           git add modules/home/test.nix
           USER=runner HOME=/tmp/runner nix run .#activate 'runner@'
           nix shell nixpkgs#findutils nixpkgs#gnugrep -c sh -c \
-            "find -L /tmp/runner/ | grep -v \.cache | grep -v \/share\/ | grep -v \/lib\/ | grep -v \/libexec\/ | grep -v \/.local\/state""
+            "find -L /tmp/runner/ | grep -v \.cache | grep -v \/share\/ | grep -v \/lib\/ | grep -v \/libexec\/ | grep -v \/.local\/state"
           cd /tmp/runner
           test -f .nix-profile/bin/git
           test -f .nix-profile/bin/nvim
