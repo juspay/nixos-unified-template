@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - update_flake_lock_action
+      - "ci/**"
   pull_request:
 jobs:
   nix:
@@ -16,3 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: om ci
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
+      - name: activate
+        run: |
+          echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
+          git add modules/home/test.nix
+          USER=runner HOME=/tmp/runner nix run .#activate 'runner@'
