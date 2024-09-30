@@ -19,7 +19,8 @@ jobs:
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
       - name: activate
         run: |
+          set -x
           echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
           git add modules/home/test.nix
           USER=runner HOME=/tmp/runner nix run .#activate 'runner@'
-          nix run nixpkgs#lsd -- --tree /tmp/runner
+          nix run nixpkgs#lsd -- --tree /tmp/runner/
