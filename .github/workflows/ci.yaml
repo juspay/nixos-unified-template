@@ -23,4 +23,4 @@ jobs:
           echo '{ home.homeDirectory = "/tmp/runner"; }' > modules/home/test.nix
           git add modules/home/test.nix
           USER=runner HOME=/tmp/runner nix run .#activate 'runner@'
-          find -L /tmp/runner/ | grep -v \.cache | grep -v \/share\/ | grep -v \/lib\/ | grep -v \/libexec\/ | grep -v \/.local\/state
+          nix shell nixpkgs#findutils -c find -L /tmp/runner/ | grep -v \.cache | grep -v \/share\/ | grep -v \/lib\/ | grep -v \/libexec\/ | grep -v \/.local\/state
