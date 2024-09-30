@@ -1,5 +1,5 @@
 # Top-level flake glue to get our home-manager configuration working
-{ self, inputs, lib, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = [
@@ -10,13 +10,9 @@
       inputs.self.nixos-flake.lib.mkHomeConfiguration
         pkgs
         ({ pkgs, ... }: {
-          # Edit the contents of the ./home directory to install packages and modify dotfile configuration in your $HOME.
-          #
-          # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-configuration
-          imports = with builtins;
-            map
-              (fn: ../home/${fn})
-              (attrNames (readDir ../home));
+          imports = [
+            (inputs.self + /modules/home)
+          ];
           home.username = "runner";
           home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/runner";
           home.stateVersion = "22.11";
