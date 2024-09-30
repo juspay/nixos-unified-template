@@ -21,6 +21,7 @@
   plugins = {
 
     # UI
+    web-devicons.enable = true;
     lualine.enable = true;
     bufferline.enable = true;
     treesitter.enable = true;
