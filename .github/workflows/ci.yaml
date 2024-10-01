@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - update_flake_lock_action
+      - nix-darwin
   pull_request:
 jobs:
   nix:
@@ -20,4 +21,4 @@ jobs:
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
       - name: activate-test
         if: matrix.system == 'x86_64-linux'
-        run: nix run .#test
+        run: nix run .#test-home-manager-config

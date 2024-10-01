@@ -30,10 +30,6 @@ check:
 dev:
   {{NIX}} develop
 
-# Build nix flake
-build: lint check
-  {{NIX}} build
-
 # Remove build output link (no garbage collection)
 clean:
   rm -f ./result
