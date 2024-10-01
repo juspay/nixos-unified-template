@@ -30,12 +30,7 @@ After steps 1-4, you should expect to see the [starship](https://starship.rs/) p
 
 Anytime you modify your home configuration in `./modules/home/*.nix`, re-run `nix run` to activate the new configuration.
 
-[^omnix]: We use [omnix](https://omnix.page/om/init.html). Alternatively, you may wish to initialize manually as follows. But you must set your name and email in `git.nix` for Git to be able to commit.
-
-    ```
-    nix flake init -t github:juspay/nix-dev-home
-    nix run .#sd "runner" "$(whoami)" modules/flake-parts/toplevel.nix
-    ```
+[^omnix]: We use [omnix](https://omnix.page/om/init.html) to initialize this repository template.
 
 [^home-modify]: Executing this step will modify the contents of your `$HOME` directory. You will be [warned before overwriting](https://nix-community.github.io/home-manager/index.html#sec-usage-dotfiles), but not before creating links to newly created configuration files in the nix store. Since home-manager does not currently provide an integrated and automated feature to eliminate the links it creates, be aware that if you would like to reverse this operation, you will need to curate your home directory manually.
 
