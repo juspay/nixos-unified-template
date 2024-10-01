@@ -14,6 +14,8 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
+      - name: om show
+        run: om show .
       - name: om ci
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
       - name: activate-test
