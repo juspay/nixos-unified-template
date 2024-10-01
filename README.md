@@ -10,7 +10,11 @@ NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/n
 
 [^nixos-flake]: If you use NixOS, you can adapt the [NixOS template of `nixos-flake`](https://community.flake.parts/nixos-flake/templates#nixos) by using configuration from this repo.
 
-1. [Install Nix](https://nixos.asia/en/install).
+1. [Install Nix](https://nixos.asia/en/install):
+    ```sh-session
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+      sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
+    ```
 1. Initialize[^omnix] your home-manager config using this repo as template:
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
