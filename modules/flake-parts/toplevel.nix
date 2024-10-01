@@ -3,21 +3,10 @@
 
 {
   imports = [
-    inputs.nixos-flake.flakeModule
+    inputs.nixos-flake.flakeModules.default
+    inputs.nixos-flake.flakeModules.autoWire
   ];
   perSystem = { self', pkgs, ... }: {
-    legacyPackages.homeConfigurations."runner" =
-      inputs.self.nixos-flake.lib.mkHomeConfiguration
-        pkgs
-        ({ pkgs, ... }: {
-          imports = [
-            (inputs.self + /modules/home)
-          ];
-          home.username = "runner";
-          home.homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/runner";
-          home.stateVersion = "22.11";
-        });
-
     # Enables 'nix run' to activate.
     apps.default = {
       inherit (self'.packages.activate) meta;
