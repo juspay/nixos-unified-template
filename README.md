@@ -2,28 +2,40 @@
 
 # nix-dev-home
 
-A [`home-manager`](https://github.com/nix-community/home-manager) template providing useful tools &amp; settings for Nix-based development. See [`./home`](home/) to see what's available.
+A multi-platform Nix configuration template optimized as development environment, based on [nixos-flake]. See [`./modules`](modules/) to see what's available.
+
+[nix-darwin]: https://github.com/LnL7/nix-darwin
+[home-manager]: https://github.com/nix-community/home-manager
+[NixOS]: https://nixos.asia/en/nixos-tutorial
+[nixos-flake]: https://community.flake.parts/nixos-flake/
+
+## Status
+
+We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see `./modules/darwin`); NixOS support is in progress (see https://github.com/juspay/nix-dev-home/issues/86).
+
+| Platform    | Supported By                              |
+|-------------|-------------------------------------------|
+| macOS       | ✅ [home-manager] and/or [nix-darwin]   |
+| NixOS       | ✅ [home-manager] and 🚧 NixOS  |
+| Other Linux | ✅ [home-manager] only                       |
 
 ## Getting Started
-
-NOTE: These instructions do not apply if you use [NixOS](https://nixos.asia/en/nixos-tutorial).[^nixos-flake]
-
-[^nixos-flake]: If you use NixOS, you can adapt the [NixOS template of `nixos-flake`](https://community.flake.parts/nixos-flake/templates#nixos) by using configuration from this repo.
 
 1. [Install Nix](https://nixos.asia/en/install):
     ```sh-session
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
       sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
     ```
-1. Initialize[^omnix] your home-manager config using this repo as template:
+1. Initialize[^omnix] your Nix configuration using this repo as template:
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
     nix --accept-flake-config run github:juspay/omnix -- \
-      init github:juspay/nix-dev-home/nix-darwin -o .
+      init github:juspay/nix-dev-home -o .
     ```
     <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
 
-    - Optionally, you may edit `./modules/home/*.nix` to your liking.
+    - It will prompt to you choose between [home-manager] only configuration and [nix-darwin] configuration. The latter includes [home-manager] as well.
+    - Optionally, you may edit `./modules/{home,darwin}/*.nix` to your liking.
 1. Run `nix run` (or the appropriate command printed by the above command) to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
 1. Restart your terminal.
@@ -32,33 +44,19 @@ After steps 1-4, you should expect to see the [starship](https://starship.rs/) p
 
 <img width="236" alt="image" src="https://github.com/user-attachments/assets/bea3a7e5-b06a-483f-b76b-5c3865ce5e55">
 
-Anytime you modify your configuration in `./modules/*/*.nix`, re-run `nix run` to activate the new configuration.
+Whenever you modify your configuration in `./modules/*/*.nix`, you should re-run `nix run` to activate the new configuration.
 
 [^omnix]: We use [omnix](https://omnix.page/om/init.html) to initialize this repository template.
 
 ## Details
 
-The configuration repo has `flake.nix` file in the current directory and some `./modules/home/*.nix` files containing the home-manager configuration that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and some `./modules/{home,darwin}/*.nix` files containing the [home-manager] and [nix-darwin] configurations respectively that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
-You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` to activate this configuration in your `$HOME`. On most systems you are likely to experience at least one of the issues mentioned below in [Troubleshooting](#troubleshooting). A more complete sequence might be
-<details>
-
-<summary>nix-dev-env setup</summary>
-
-```sh
-> nix develop
-(nix:nix-dev-home-env) > rm ~/.bashrc ~/.profile && just run && direnv allow
-(nix:nix-dev-home-env) > exit
-> bash
-runner on 12ca6a64c923 work on  feature/branch via ❄️  impure (nix-dev-home-env)
-⬢ [Docker] ❯
-```
-
-</details>
+You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` (or `nix run`) to activate this configuration in your system.
 
 If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
 
-To browse the capabilities of home-manager (and to see what else can go in your `./home/default.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
+To browse the capabilities of [home-manager] (and to see what else can go in your `./modules/home/*.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
 
 ## Troubleshooting
 
@@ -82,10 +80,6 @@ sudo pkill nix-daemon
 
 ## FAQ
 
-### But I use NixOS
-
-You can embed this configuration inside your NixOS configuration, and thus share it with non-NixOS systems (like macOS and Ubuntu). See the "both" template of [https://github.com/srid/nixos-flake](https://github.com/srid/nixos-flake) for an example. If you don't want to share the configuration with macOS (ie., you use only Linux for development), see the "linux" template instead. See also https://github.com/juspay/nix-dev-home/issues/86.
-
 ### `/nix/store` garbage collection
 
-By default garbage collection is run automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv?tab=readme-ov-file#nix-direnv)).
+By default, [home-manager] is configured to run garbage collection automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv#nix-direnv)).
