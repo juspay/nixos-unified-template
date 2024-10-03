@@ -37,7 +37,7 @@
         home = let parent = templates.default; in {
           description = mkDescription "home-manager";
           welcomeText = ''
-            You have just created a nix-dev-home flake.nix using home-manager.
+            You have just created a nixos-unified-template flake.nix using home-manager.
 
             - Edit `./modules/home/*.nix` to customize your configuration.
             - Run `nix run` to apply the configuration.
@@ -55,7 +55,7 @@
         nix-darwin = let parent = templates.default; in {
           description = mkDescription "nix-darwin";
           welcomeText = ''
-            You have just created a nix-dev-home flake.nix using nix-darwin / home-manager.
+            You have just created a nixos-unified-template flake.nix using nix-darwin / home-manager.
 
             - Edit `./modules/{home,darwin}/*.nix` to customize your configuration.
 

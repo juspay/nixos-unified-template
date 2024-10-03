@@ -1,6 +1,6 @@
 [![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://nixos.zulipchat.com/#narrow/stream/413950-nix)
 
-# nix-dev-home
+# nixos-unified-template
 
 A multi-platform Nix configuration template optimized as development environment, based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
 
@@ -11,7 +11,7 @@ A multi-platform Nix configuration template optimized as development environment
 
 ## Status
 
-We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see `./modules/darwin`); NixOS support is in progress (see https://github.com/juspay/nix-dev-home/issues/86).
+We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see `./modules/darwin`); NixOS support is in progress (see https://github.com/juspay/nixos-unified-template/issues/86).
 
 | Platform    | Supported By                              |
 |-------------|-------------------------------------------|
@@ -30,7 +30,7 @@ We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
     nix --accept-flake-config run github:juspay/omnix -- \
-      init github:juspay/nix-dev-home -o .
+      init github:juspay/nixos-unified-template -o .
     ```
     <img width="1092" alt="image" src="https://github.com/user-attachments/assets/1341d200-d894-488c-ba74-42d8830cc6f7">
 
