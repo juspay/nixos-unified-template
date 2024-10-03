@@ -9,15 +9,15 @@
 
         filters = path: with inputs.nixpkgs.lib; {
           homeOnly =
-            hasPrefix "configurations/home" path
+            hasInfix "configurations/home" path
             || hasSuffix "activate-home.nix" path;
           darwinOnly =
-            hasPrefix "configurations/darwin" path
-            || hasPrefix "modules/darwin" path;
+            hasInfix "configurations/darwin" path
+            || hasInfix "modules/darwin" path;
           alwaysExclude =
             hasSuffix "LICENSE" path
             || hasSuffix "README.md" path
-            || hasSuffix ".github/" path
+            || hasInfix ".github" (builtins.trace path path)
             || hasSuffix "template.nix" path
             || hasSuffix "test.nix" path
           ;
