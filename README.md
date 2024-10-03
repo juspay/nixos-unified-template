@@ -66,18 +66,6 @@ To browse the capabilities of [home-manager] (and to see what else can go in you
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
 
-### Cannot use cache / cachix
-
-**Problem**: Cannot use cachix: Running `nix run nixpkgs#cachix use nammayatri` (for example) does not succeed.
-
-**Solution**: Add yourself to the `trusted-users` nix config and restart the nix daemon.
-
-```sh
-mkdir -p ~/.config/nix
-echo "trusted-users = root $(whoami)" >> $HOME/.config/nix/nix.conf
-sudo pkill nix-daemon
-```
-
 ## FAQ
 
 ### `/nix/store` garbage collection
