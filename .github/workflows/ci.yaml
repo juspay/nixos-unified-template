@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - update_flake_lock_action
+      - nixos
   pull_request:
 jobs:
   nix:
@@ -18,6 +19,31 @@ jobs:
         run: om show .
       - name: om ci
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
+
+      # Make sure that the templates at least build after initialized
+      # TODO: Ideally, we want to let `omnix` run these tests
+      # https://github.com/juspay/omnix/issues/282
+      - name: NixOS test
+        if: matrix.system == 'x86_64-linux'
+        run: |
+          om init .#nixos -o /tmp/nixconfig \
+            --non-interactive \
+            --params '{"hostname": "example", "username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca"}'
+          set -x
+          nix build /tmp/nixconfig#nixosConfigurations.example.config.system.build.toplevel
+          type -f ./result/etc/profiles/per-user/srid/bin/git
+
+      - name: nix-darwin test
+        if: matrix.system == 'aarch64-darwin' || matrix.system == 'x86_64-darwin'
+        run: |
+          om init .#darwin -o /tmp/nixconfig \
+            --non-interactive \
+            --params '{"hostname": "example", "username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca"}'
+          set -x
+          nix build /tmp/nixconfig#darwinConfigurations.example.config.system.build.toplevel
+          type -f ./result/etc/profiles/per-user/srid/bin/git
+
+      # TODO: Use `om init` like above
       - name: activate-test
         if: matrix.system == 'x86_64-linux'
         run: nix run .#test-home-manager-config

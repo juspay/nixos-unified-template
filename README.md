@@ -21,6 +21,25 @@ We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see
 
 ## Getting Started
 
+### On NixOS
+
+1. Install NixOS from [Graphical ISO image](https://nixos.org/download/#download-nixos) and reboot.
+1. Ensure that `/etc/nixos/{configuration.nix, hardware-configuration.nix}` are in place.
+1. In a terminal, become `root` and initialize our template under `/etc/nixos`:
+  ```sh-session
+  sudo su -
+  cd /etc/nixos
+  nix --accept-flake-config --extra-experimental-features "nix-command flakes" \
+    run github:juspay/omnix -- \
+    init github:juspay/nixos-unified-template#nixos -o .
+  # Replace HOSTNAME with the hostname you entered above.
+  mv configuration.nix hardware-configuration.nix ./configurations/nixos/HOSTNAME/
+  nix --extra-experimental-features "nix-command flakes" run
+  ```
+1. At this point, you can move `/etc/nixos` to anywhere, and initialize a Git repository to track future changes.
+
+### On non-NixOS
+
 1. [Install Nix](https://nixos.asia/en/install):
     ```sh-session
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
