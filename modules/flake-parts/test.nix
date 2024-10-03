@@ -1,6 +1,3 @@
-# Top-level flake glue to get our configuration working
-{ inputs, ... }:
-
 {
   perSystem = { pkgs, ... }: {
     # Run activation test
