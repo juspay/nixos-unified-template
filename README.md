@@ -32,8 +32,6 @@ We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see
     nix --accept-flake-config run github:juspay/omnix -- \
       init github:juspay/nix-dev-home -o .
     ```
-    <img width="587" alt="image" src="https://github.com/user-attachments/assets/2c0d514e-2284-4b92-9b5b-036b1e4393b0">
-
     - It will prompt to you choose between [home-manager] only configuration and [nix-darwin] configuration. The latter includes [home-manager] as well.
     - Optionally, you may edit `./modules/{home,darwin}/*.nix` to your liking.
 1. Run `nix run` (or the appropriate command printed by the above command) to activate your configuration.
