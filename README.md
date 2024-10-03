@@ -26,7 +26,7 @@ We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
       sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
     ```
-1. Initialize[^omnix] your Nix configuration using this repo as template:
+1. Open a new terminal; Initialize[^omnix] your Nix configuration using this repo as template:
     ```sh-session
     mkdir ~/nixconfig && cd ~/nixconfig
     nix --accept-flake-config run github:juspay/omnix -- \
