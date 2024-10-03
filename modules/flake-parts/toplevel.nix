@@ -3,8 +3,8 @@
 
 {
   imports = [
-    inputs.nixos-flake.flakeModules.default
-    inputs.nixos-flake.flakeModules.autoWire
+    inputs.nixos-unified.flakeModules.default
+    inputs.nixos-unified.flakeModules.autoWire
   ];
   perSystem = { self', pkgs, ... }: {
     # For 'nix fmt'

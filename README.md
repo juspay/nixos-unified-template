@@ -2,12 +2,12 @@
 
 # nix-dev-home
 
-A multi-platform Nix configuration template optimized as development environment, based on [nixos-flake]. See [`./modules`](modules/) to see what's available.
+A multi-platform Nix configuration template optimized as development environment, based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
 
 [nix-darwin]: https://github.com/LnL7/nix-darwin
 [home-manager]: https://github.com/nix-community/home-manager
 [NixOS]: https://nixos.asia/en/nixos-tutorial
-[nixos-flake]: https://community.flake.parts/nixos-flake/
+[nixos-unified]: https://nixos-unified.org
 
 ## Status
 
