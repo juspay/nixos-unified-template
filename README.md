@@ -2,7 +2,17 @@
 
 # nixos-unified-template
 
-A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
+A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP[^neovim] and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
+
+[^neovim]: Wanna try before you buy?
+    ```
+    git clone https://github.com/srid/rust-nix-template
+    cd rust-nix-template
+    direnv allow
+    nix run github:juspay/nixos-unified-template#neovim
+    # Type `SPC f f` to open a .rs file
+    # Wait for rust-analyzer to finish; go to a symbol and type K
+    ```
 
 [nix-darwin]: https://github.com/LnL7/nix-darwin
 [home-manager]: https://github.com/nix-community/home-manager
