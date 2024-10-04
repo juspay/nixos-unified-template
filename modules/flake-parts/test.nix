@@ -11,6 +11,7 @@
           findutils
           gnugrep
         ];
+        # FIXME: This should use `{{ runner.temp }}` from ci.yaml
         text = ''
           set -x
           # Override the home directory to a temp location
