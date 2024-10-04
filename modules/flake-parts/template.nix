@@ -20,7 +20,7 @@
           alwaysExclude =
             hasSuffix "LICENSE" path
             || hasSuffix "README.md" path
-            || hasInfix ".github" (builtins.trace path path)
+            || hasInfix ".github" path
             || hasSuffix "template.nix" path
             || hasSuffix "test.nix" path
           ;
