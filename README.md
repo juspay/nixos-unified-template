@@ -13,6 +13,11 @@ A multi-platform Nix configuration template optimized as development environment
     # Type `SPC f f` to open a .rs file
     # Wait for rust-analyzer to finish; go to a symbol and type K
     ```
+    
+    Expect to see:
+    
+    <img width="534" alt="image" src="https://github.com/user-attachments/assets/204e6ad7-c233-4503-9924-73fbce2772d6">
+
 
 [nix-darwin]: https://github.com/LnL7/nix-darwin
 [home-manager]: https://github.com/nix-community/home-manager
