@@ -9,11 +9,14 @@
 
         filters = path: with inputs.nixpkgs.lib; {
           homeOnly =
-            hasInfix "configurations/home" path
-            || hasSuffix "activate-home.nix" path;
+            # NOTE: configurations/home/* is imported in nix-darwin and NixOS
+            hasSuffix "activate-home.nix" path;
           darwinOnly =
             hasInfix "configurations/darwin" path
             || hasInfix "modules/darwin" path;
+          nixosOnly =
+            hasInfix "configurations/nixos" path
+            || hasInfix "modules/nixos" path;
           alwaysExclude =
             hasSuffix "LICENSE" path
             || hasSuffix "README.md" path
@@ -48,7 +51,29 @@
           path = builtins.path {
             path = parent.path;
             filter = path: _:
-              !(filters path).darwinOnly;
+              let f = filters path;
+              in
+                !(f.nixosOnly || f.darwinOnly);
+          };
+        };
+
+        nixos = let parent = templates.default; in {
+          description = mkDescription "NixOS";
+          welcomeText = ''
+            You have just created a nixos-unified-template flake.nix using NixOS.
+
+            - Edit `./modules/nixos/*.nix` to customize your configuration.
+            - Run `mv /etc/nixos/*.nix ./configurations/nixos/HOSTNAME/` to import your existing configuration.
+            - Run `nix --extra-experimental-features "nix-command flakes" run` to apply the configuration.
+
+            Enjoy!
+          '';
+          path = builtins.path {
+            path = parent.path;
+            filter = path: _:
+              let f = filters path;
+              in
+                !(f.darwinOnly || f.homeOnly);
           };
         };
 
@@ -75,7 +100,9 @@
           path = builtins.path {
             path = parent.path;
             filter = path: _:
-              !(filters path).homeOnly;
+              let f = filters path;
+              in
+                !(f.nixosOnly || f.homeOnly);
           };
         };
       };
@@ -109,6 +136,17 @@
             value = false;
           }
         ];
+      };
+
+      nixos = {
+        template = templates.nixos;
+        params = [
+          {
+            name = "hostname";
+            description = "Your system hostname as shown by `hostname -s`";
+            placeholder = "example";
+          }
+        ] ++ om.templates.home.params;
       };
 
       darwin = {

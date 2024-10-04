@@ -2,7 +2,7 @@
 
 # nixos-unified-template
 
-A multi-platform Nix configuration template optimized as development environment, based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
+A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
 
 [nix-darwin]: https://github.com/LnL7/nix-darwin
 [home-manager]: https://github.com/nix-community/home-manager
@@ -11,15 +11,38 @@ A multi-platform Nix configuration template optimized as development environment
 
 ## Status
 
-We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see `./modules/darwin`); NixOS support is in progress (see https://github.com/juspay/nixos-unified-template/issues/86).
+We currently support [home-manager] (see `./modules/home`), [nix-darwin] (see `./modules/darwin`) and [NixOS] (see `./modules/nixos`).
 
 | Platform    | Supported By                              |
 |-------------|-------------------------------------------|
 | macOS       | ✅ [home-manager] and/or [nix-darwin]   |
-| NixOS       | ✅ [home-manager] and 🚧 NixOS  |
+| NixOS       | ✅ [home-manager] and ✅ [NixOS]  |
 | Other Linux | ✅ [home-manager] only                       |
 
 ## Getting Started
+
+### On NixOS
+
+If you use, or intend to use, [NixOS]:
+
+1. Install NixOS from [Graphical ISO image](https://nixos.org/download/#download-nixos) and reboot.
+1. Ensure that `/etc/nixos/{configuration.nix, hardware-configuration.nix}` are in place.
+1. In a terminal, become `root` and initialize our template under `/etc/nixos`:
+    ```sh-session
+    sudo su -
+    cd /etc/nixos
+    nix --accept-flake-config --extra-experimental-features "nix-command flakes" \
+      run github:juspay/omnix -- \
+      init github:juspay/nixos-unified-template#nixos -o .
+    # Replace HOSTNAME with the hostname you entered above.
+    mv configuration.nix hardware-configuration.nix ./configurations/nixos/HOSTNAME/
+    nix --extra-experimental-features "nix-command flakes" run
+    ```
+1. At this point, you can move `/etc/nixos` to anywhere, and initialize a Git repository to track future changes.
+
+### On non-NixOS
+
+If you are on macOS or running other Linux distros:
 
 1. [Install Nix](https://nixos.asia/en/install):
     ```sh-session
@@ -34,7 +57,7 @@ We currently support [home-manager] (see `./modules/home`) and [nix-darwin] (see
     ```
     <img width="1092" alt="image" src="https://github.com/user-attachments/assets/1341d200-d894-488c-ba74-42d8830cc6f7">
 
-    - It will prompt to you choose between [home-manager] only configuration and [nix-darwin] configuration. The latter includes [home-manager] as well.
+    - It will prompt to you choose between [home-manager] only configuration and [nix-darwin] configuration (ignore the [NixOS] template). The latter includes [home-manager] as well.
     - Optionally, you may edit `./modules/{home,darwin}/*.nix` to your liking.
 1. Run `nix run` (or the appropriate command printed by the above command) to activate your configuration.
     - Does this fail to run? See the [Troubleshooting](#troubleshooting) section below.
@@ -50,7 +73,7 @@ Whenever you modify your configuration in `./modules/*/*.nix`, you should re-run
 
 ## Details
 
-The configuration repo has `flake.nix` file in the current directory and some `./modules/{home,darwin}/*.nix` files containing the [home-manager] and [nix-darwin] configurations respectively that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
+The configuration repo has `flake.nix` file in the current directory and some `./modules/{home,darwin,nixos}/*.nix` files containing the [home-manager], [nix-darwin] and [NixOS] configurations respectively that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
 You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` (or `nix run`) to activate this configuration in your system.
 
@@ -62,7 +85,7 @@ To browse the capabilities of [home-manager] (and to see what else can go in you
 
 ### `error: opening lock file ...`
 
-**Problem**: `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
+**Problem**: When using home-manager, `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
 
