@@ -6,6 +6,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
+    pkgs.gnome-tweaks
   ];
 }
