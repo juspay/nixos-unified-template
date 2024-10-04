@@ -25,7 +25,7 @@ We currently support [home-manager] (see `./modules/home`), [nix-darwin] (see `.
 
 | Platform    | Supported By                              |
 |-------------|-------------------------------------------|
-| macOS       | ✅ [home-manager] and/or [nix-darwin]   |
+| macOS       | ✅ [home-manager] and/or ✅ [nix-darwin]   |
 | NixOS       | ✅ [home-manager] and ✅ [NixOS]  |
 | Other Linux | ✅ [home-manager] only                       |
 
