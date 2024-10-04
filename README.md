@@ -8,7 +8,7 @@ A multi-platform Nix configuration template optimized as development environment
     ```
     git clone https://github.com/srid/rust-nix-template
     cd rust-nix-template
-    direnv allow
+    nix develop
     nix run github:juspay/nixos-unified-template#neovim
     # Type `SPC f f` to open a .rs file
     # Wait for rust-analyzer to finish; go to a symbol and type K
