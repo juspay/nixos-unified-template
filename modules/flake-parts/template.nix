@@ -75,7 +75,6 @@
               in
                 !(f.darwinOnly || f.homeOnly);
           };
-
         };
 
         nix-darwin = let parent = templates.default; in {

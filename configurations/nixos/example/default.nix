@@ -16,5 +16,4 @@ in
   home-manager.users."runner" = {
     imports = [ (self + /configurations/home/runner.nix) ];
   };
-
 }
