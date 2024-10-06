@@ -23,6 +23,18 @@ jobs:
       # Make sure that the templates at least build after initialized
       # TODO: Ideally, we want to let `omnix` run these tests
       # https://github.com/juspay/omnix/issues/282
+      - name: home-manager test
+        run: |
+          CONF=${{ runner.temp }}/home-manager && mkdir $CONF
+          om init .#home -o $CONF \
+            --non-interactive \
+            --params '{"username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca", "neovim": true}'
+          set -x
+          nix build ${CONF}#homeConfigurations.srid.activationPackage
+          ls -l ./result/home-path/bin/git
+          ls -l ./result/home-path/bin/nvim
+          ls -l ./result/home-files/.config/git/config
+
       - name: NixOS test
         if: matrix.system == 'x86_64-linux'
         run: |
@@ -44,8 +56,3 @@ jobs:
           set -x
           nix build ${CONF}#darwinConfigurations.example.config.system.build.toplevel
           type -f ./result/etc/profiles/per-user/srid/bin/git
-
-      # TODO: Use `om init` like above
-      - name: activate-test
-        if: matrix.system == 'x86_64-linux'
-        run: nix run .#test-home-manager-config
