@@ -136,6 +136,25 @@
             value = false;
           }
         ];
+        tests = {
+          default = {
+            params = {
+              username = "john";
+              git-email = "john@ex.com";
+              git-name = "John Doe";
+              neovim = true;
+            };
+            asserts = {
+              source = {
+                "modules/home/neovim/default.nix" = true;
+                ".github/workflows" = false;
+              };
+              packages."homeConfigurations.john.activationPackage" = {
+                "home-path/bin/nvim" = true;
+              };
+            };
+          };
+        };
       };
 
       nixos = {
