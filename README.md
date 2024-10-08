@@ -2,7 +2,13 @@
 
 # nixos-unified-template
 
-A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP[^neovim] and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available.
+A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP[^neovim] and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available. We support [home-manager] (see `./modules/home`), [nix-darwin] (see `./modules/darwin`) and [NixOS] (see `./modules/nixos`).
+
+| Platform    | Supported By                              |
+|-------------|-------------------------------------------|
+| macOS       | ✅ [home-manager] and/or ✅ [nix-darwin]   |
+| NixOS       | ✅ [home-manager] and ✅ [NixOS]  |
+| Other Linux | ✅ [home-manager] only                       |
 
 [^neovim]: Wanna try before you buy?
     ```
@@ -24,15 +30,7 @@ A multi-platform Nix configuration template optimized as development environment
 [NixOS]: https://nixos.asia/en/nixos-tutorial
 [nixos-unified]: https://nixos-unified.org
 
-## Status
 
-We currently support [home-manager] (see `./modules/home`), [nix-darwin] (see `./modules/darwin`) and [NixOS] (see `./modules/nixos`).
-
-| Platform    | Supported By                              |
-|-------------|-------------------------------------------|
-| macOS       | ✅ [home-manager] and/or ✅ [nix-darwin]   |
-| NixOS       | ✅ [home-manager] and ✅ [NixOS]  |
-| Other Linux | ✅ [home-manager] only                       |
 
 ## Getting Started
 
