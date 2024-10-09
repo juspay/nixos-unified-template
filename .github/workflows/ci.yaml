@@ -20,39 +20,7 @@ jobs:
       - name: om ci
         run: om ci --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" run --systems "${{ matrix.system }}"
 
-      # Make sure that the templates at least build after initialized
-      # TODO: Ideally, we want to let `omnix` run these tests
-      # https://github.com/juspay/omnix/issues/282
-      - name: home-manager test
+      - name: om init tests
         run: |
-          CONF=${{ runner.temp }}/home-manager && mkdir $CONF
-          om init .#home -o $CONF \
-            --non-interactive \
-            --params '{"username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca", "neovim": true}'
-          set -x
-          nix build ${CONF}#homeConfigurations.srid.activationPackage
-          ls -l ./result/home-path/bin/git
-          ls -l ./result/home-path/bin/nvim
-          ls -l ./result/home-files/.config/git/config
+          om init --test .
 
-      - name: NixOS test
-        if: matrix.system == 'x86_64-linux'
-        run: |
-          CONF=${{ runner.temp }}/nixos && mkdir $CONF
-          om init .#nixos -o $CONF \
-            --non-interactive \
-            --params '{"hostname": "example", "username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca"}'
-          set -x
-          nix build ${CONF}#nixosConfigurations.example.config.system.build.toplevel
-          type -f ./result/etc/profiles/per-user/srid/bin/git
-
-      - name: nix-darwin test
-        if: matrix.system == 'aarch64-darwin' || matrix.system == 'x86_64-darwin'
-        run: |
-          CONF=${{ runner.temp }}/darwin && mkdir $CONF
-          om init .#darwin -o $CONF \
-            --non-interactive \
-            --params '{"hostname": "example", "username": "srid", "git-name": "Srid", "git-email": "srid@srid.ca"}'
-          set -x
-          nix build ${CONF}#darwinConfigurations.example.config.system.build.toplevel
-          type -f ./result/etc/profiles/per-user/srid/bin/git

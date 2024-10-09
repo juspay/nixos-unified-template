@@ -168,6 +168,20 @@
             placeholder = "example";
           }
         ] ++ om.templates.home.params;
+        tests = {
+          default = {
+            systems = [ "x86_64-linux" "aarch64-linux" ];
+            params = om.templates.home.tests.default.params // {
+              hostname = "example";
+            };
+            asserts = {
+              source = { };
+              packages."nixosConfigurations.example.config.system.build.toplevel" = {
+                "etc/profiles/per-user/john/bin/git" = true;
+              };
+            };
+          };
+        };
       };
 
       darwin = {
@@ -179,6 +193,20 @@
             placeholder = "example";
           }
         ] ++ om.templates.home.params;
+        tests = {
+          default = {
+            systems = [ "x86_64-darwin" "aarch64-darwin" ];
+            params = om.templates.home.tests.default.params // {
+              hostname = "example";
+            };
+            asserts = {
+              source = { };
+              packages."darwinConfigurations.example.config.system.build.toplevel" = {
+                "etc/profiles/per-user/john/bin/git" = true;
+              };
+            };
+          };
+        };
       };
     };
   };
