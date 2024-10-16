@@ -19,9 +19,9 @@ A multi-platform Nix configuration template optimized as development environment
     # Type `SPC f f` to open a .rs file
     # Wait for rust-analyzer to finish; go to a symbol and type K
     ```
-    
+
     Expect to see:
-    
+
     <img width="534" alt="image" src="https://github.com/user-attachments/assets/204e6ad7-c233-4503-9924-73fbce2772d6">
 
 
@@ -29,8 +29,6 @@ A multi-platform Nix configuration template optimized as development environment
 [home-manager]: https://github.com/nix-community/home-manager
 [NixOS]: https://nixos.asia/en/nixos-tutorial
 [nixos-unified]: https://nixos-unified.org
-
-
 
 ## Getting Started
 
@@ -95,6 +93,36 @@ If you prefer, you can simply execute `nix run`, but using `just` will perform s
 
 To browse the capabilities of [home-manager] (and to see what else can go in your `./modules/home/*.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
 
+## What's included
+
+Here we describe just a handful of tools included in this template. See the [./modules](./modules) directory for more.
+
+### neovim
+
+Neovim configured using [nixvim](https://github.com/nix-community/nixvim) is included across all configurations. It is also exposed as a flake app, so you can launch it directly using `nix run github:juspay/nixos-unified-template#neovim`. See `neovim/nixvim.nix`.
+
+### starship
+
+Prettify your shell prompt with [starship](https://starship.rs/). It is configured to show the current git branch, the current directory, Nix devshell status and the exit code of the last command.
+
+### direnv
+
+[direnv](https://nixos.asia/en/direnv) as well as `nix-direnv` is fully configured and available to use in your shell, with tight starship (see above) prompt integration. See `direnv.nix`
+
+### git configuration
+
+Your `~/.config/git/config` is managed entirely in Nix. See `git.nix`.
+
+### command
+
+Type `, ` followed by the any binary name to run it directly from nixpkgs.
+
+### Garbage collection
+
+Nix garbage collection runs periodically to keep disk space manageable. See `gc.nix`
+
+By default, [home-manager] is configured to run garbage collection automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv#nix-direnv)).
+
 ## Troubleshooting
 
 ### `error: opening lock file ...`
@@ -102,9 +130,3 @@ To browse the capabilities of [home-manager] (and to see what else can go in you
 **Problem**: When using home-manager, `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
-
-## FAQ
-
-### `/nix/store` garbage collection
-
-By default, [home-manager] is configured to run garbage collection automatically every week. If your projects use nix-direnv, you don't have to worry about having to download the dependencies again while in a remote area with limited internet access ([see prominent features of nix-direnv](https://github.com/nix-community/nix-direnv#nix-direnv)).
