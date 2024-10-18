@@ -131,7 +131,7 @@ By default, [home-manager] is configured to run garbage collection automatically
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
 
-### `error: unable to download ... Problem with the SSL CA cert (path? access rights?)
+### `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
 
 **Problem**: While initialising template on MacOS, if it shows error like: `error: unable to download ... Problem with the SSL CA cert (path? access rights?)
 **Solution**: Run below commands to resolve
