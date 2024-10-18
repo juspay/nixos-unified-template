@@ -130,3 +130,17 @@ By default, [home-manager] is configured to run garbage collection automatically
 **Problem**: When using home-manager, `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
 
 **Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
+
+### `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
+
+**Problem**: On macOS, you may see this error: `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
+
+**Solution**: You may be able to resolve this by running:
+
+```sh
+sudo rm /etc/ssl/certs/ca-certificates.crt
+sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+```
+
+See https://github.com/NixOS/nix/issues/2899#issuecomment-1669501326
+
