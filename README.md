@@ -133,11 +133,14 @@ By default, [home-manager] is configured to run garbage collection automatically
 
 ### `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
 
-**Problem**: While initialising template on MacOS, if it shows error like: `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
+**Problem**: On macOS, you may see this error: `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
 
-**Solution**: Run below commands to resolve
+**Solution**: You may be able to resolve this by running:
 
 ```sh
 sudo rm /etc/ssl/certs/ca-certificates.crt
 sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
+
+See https://github.com/NixOS/nix/issues/2899#issuecomment-1669501326
+
