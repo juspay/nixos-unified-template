@@ -62,7 +62,6 @@ If you are on macOS or running other Linux distros:
     ```
 1. Open a new terminal; Initialize[^omnix] your Nix configuration using this repo as template:
     ```sh-session
-    mkdir ~/nixconfig
     nix --accept-flake-config run github:juspay/omnix -- \
       init github:juspay/nixos-unified-template -o ~/nixconfig
     cd ~/nixconfig
