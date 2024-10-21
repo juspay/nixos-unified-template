@@ -20,13 +20,8 @@
     nixvim.inputs.flake-parts.follows = "flake-parts";
   };
 
+  # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-      # See ./flake-parts/*.nix for the modules that are imported here.
-      imports = with builtins;
-        map
-          (fn: ./modules/flake-parts/${fn})
-          (attrNames (readDir ./modules/flake-parts));
-    };
+    inputs.nixos-unified.lib.mkFlake
+      { inherit inputs; root = ./.; };
 }
