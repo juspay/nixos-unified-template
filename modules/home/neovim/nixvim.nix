@@ -60,10 +60,13 @@
     lsp = {
       enable = true;
       servers = {
-        hls.enable = true;
+        hls = {
+          enable = true;
+          installGhc = false; # Managed by Nix devShell
+        };
         marksman.enable = true;
-        nil-ls.enable = true;
-        rust-analyzer = {
+        nil_ls.enable = true;
+        rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
