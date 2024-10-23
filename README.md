@@ -112,9 +112,9 @@ Prettify your shell prompt with [starship](https://starship.rs/). It is configur
 
 Your `~/.config/git/config` is managed entirely in Nix. See `git.nix`.
 
-### command
+### comma
 
-Type `, ` followed by the any binary name to run it directly from nixpkgs.
+Type `, ` followed by the any binary name to run it directly from nixpkgs, using [comma](https://github.com/nix-community/comma).
 
 ### Garbage collection
 
