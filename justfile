@@ -28,5 +28,5 @@ dev:
 
 # Activate the configuration
 [group('Main')]
-run: lint check
+run:
   nix run
