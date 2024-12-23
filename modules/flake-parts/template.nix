@@ -114,7 +114,7 @@
         params = [
           {
             name = "username";
-            description = "Your username as shown by `whoami`";
+            description = "Your username as shown by `id -un`";
             placeholder = "runner";
           }
           # Git

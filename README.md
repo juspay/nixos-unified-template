@@ -58,7 +58,7 @@ If you are on macOS or running other Linux distros:
 1. [Install Nix](https://nixos.asia/en/install):
     ```sh-session
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-      sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
+      sh -s -- install --no-confirm --extra-conf "trusted-users = $(id -un)"
     ```
 1. Open a new terminal; Initialize[^omnix] your Nix configuration using this repo as template:
     ```sh-session
@@ -128,7 +128,7 @@ By default, [home-manager] is configured to run garbage collection automatically
 
 **Problem**: When using home-manager, `nix run` shows an error like: `error: opening lock file '/nix/var/nix/profiles/per-user/utkarsh.pandey1/profile.lock': No such file or directory`
 
-**Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(whoami)/ && sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)` and try again.
+**Solution**: This is an instance of https://github.com/nix-community/home-manager/issues/4611. Run `sudo mkdir /nix/var/nix/profiles/per-user/$(id -un)/ && sudo chown $(id -un) /nix/var/nix/profiles/per-user/$(id -un)` and try again.
 
 ### `error: unable to download ... Problem with the SSL CA cert (path? access rights?)`
 
