@@ -73,5 +73,13 @@
         };
       };
     };
+    lazygit.enable = true;
   };
+  keymaps = [
+    # Open lazygit within nvim. 
+    {
+      action = "<cmd>LazyGit<CR>";
+      key = "<leader>gg"; 
+    }
+  ];
 }
