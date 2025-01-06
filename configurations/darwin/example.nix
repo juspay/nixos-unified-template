@@ -20,7 +20,7 @@ in
 
   home-manager = {
     # Automatically move old dotfiles out of the way
-    home-manager.backupFileExtension = "bak";
+    backupFileExtension = "bak";
 
     # Enable home-manager for "runner" user
     users."runner" = {
