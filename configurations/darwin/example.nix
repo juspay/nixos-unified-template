@@ -20,7 +20,11 @@ in
 
   home-manager = {
     # Automatically move old dotfiles out of the way
-    backupFileExtension = "bak";
+    #
+    # Note that home-manager is not very smart, if this backup file already exists it 
+    # will complain "Existing file .. would be clobbered by backing up". To mitigate this,
+    # we try to use as unique a backup file extension as possible.
+    backupFileExtension = "nixos-unified-template-backup";
 
     # Enable home-manager for "runner" user
     users."runner" = {
