@@ -6,9 +6,9 @@ A multi-platform Nix configuration template optimized as development environment
 
 | Platform    | Supported By                              |
 |-------------|-------------------------------------------|
-| macOS       | ✅ [home-manager] and/or ✅ [nix-darwin]   |
-| NixOS       | ✅ [home-manager] and ✅ [NixOS]  |
-| Other Linux | ✅ [home-manager] only                       |
+| macOS only       | ✅ [home-manager] and/or ✅ [nix-darwin]   |
+| NixOS only       | ✅ [home-manager] and ✅ [NixOS]  |
+| All platforms    | ✅ [home-manager] only                       |
 
 [^neovim]: Wanna try before you buy?
     ```
