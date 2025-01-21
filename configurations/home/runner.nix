@@ -11,7 +11,7 @@ in
   # To use the `nix` from `inputs.nixpkgs` on templates using the standalone `home-manager` template
 
   # `nix.package` is already set if on `NixOS` or `nix-darwin`.
-  nix.package = lib.mkForce pkgs.nix;
+  nix.package = lib.mkDefault pkgs.nix;
   home.packages = [
     config.nix.package
   ];
