@@ -1,4 +1,7 @@
-{ ... }:
+{ flake, ... }:
+let
+  inherit (flake.config) me;
+in
 {
   home.shellAliases = {
     g = "git";
@@ -9,8 +12,8 @@
   programs = {
     git = {
       enable = true;
-      userName = "John Doe";
-      userEmail = "johndoe@example.com";
+      userName = me.fullname;
+      userEmail = me.email;
       ignores = [ "*~" "*.swp" ];
       aliases = {
         ci = "commit";
