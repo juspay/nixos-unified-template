@@ -2,7 +2,9 @@
 
 # nixos-unified-template
 
-A multi-platform Nix configuration template optimized as development environment (includes direnv, neovim with LSP[^neovim] and such), based on [nixos-unified]. See [`./modules`](modules/) to see what's available. We support [home-manager] (see `./modules/home`), [nix-darwin] (see `./modules/darwin`) and [NixOS] (see `./modules/nixos`).
+This repository provides a ready-made Nix configuration to manage either your Home environment or whole NixOS systems. It is optimized specifically for development environment (with direnv, neovim with LSP[^neovim], etc.).
+
+Under the hood, it uses [nixos-unified]. See [`./modules`](modules/) to see what's available. We support [home-manager] (see `./modules/home`), [nix-darwin] (see `./modules/darwin`) and [NixOS] (see `./modules/nixos`).
 
 | Platform    | Supported By                              |
 |-------------|-------------------------------------------|
@@ -86,11 +88,11 @@ Whenever you modify your configuration in `./modules/*/*.nix`, you should re-run
 
 The configuration repo has `flake.nix` file in the current directory and some `./modules/{home,darwin,nixos}/*.nix` files containing the [home-manager], [nix-darwin] and [NixOS] configurations respectively that you can review. It also has a [justfile](https://github.com/casey/just), which provides a set of recipes analogous to Make targets to interact with the nix flake.
 
-You can then execute `nix develop`, to ensure you are in the development shell with [just](https://github.com/casey/just) installed, followed by `just run` (or `nix run`) to activate this configuration in your system.
-
-If you prefer, you can simply execute `nix run`, but using `just` will perform some additional validation and ensure you are able to use the other commands in the [justfile](./justfile).
+Run `nix run` to activate this configuration in your system.
 
 To browse the capabilities of [home-manager] (and to see what else can go in your `./modules/home/*.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
+
+Global configuration is in `./modules/flake-parts/config.nix`. Here, you can specify your user name, email and such settings.
 
 ## What's included
 
@@ -142,4 +144,3 @@ sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/ce
 ```
 
 See https://github.com/NixOS/nix/issues/2899#issuecomment-1669501326
-
