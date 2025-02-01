@@ -5,6 +5,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  inherit (flake.config) me;
 in
 {
   imports = [
@@ -13,8 +14,8 @@ in
     ./configuration.nix
   ];
 
-  # Enable home-manager for "runner" user
-  home-manager.users."runner" = {
-    imports = [ (self + /configurations/home/runner.nix) ];
+  # Enable home-manager for our user
+  home-manager.users."${me.username}" = {
+    imports = [ (self + /configurations/home/${me.username}.nix) ];
   };
 }

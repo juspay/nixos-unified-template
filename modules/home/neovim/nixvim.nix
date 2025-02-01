@@ -79,7 +79,7 @@
     # Open lazygit within nvim. 
     {
       action = "<cmd>LazyGit<CR>";
-      key = "<leader>gg"; 
+      key = "<leader>gg";
     }
   ];
 }
