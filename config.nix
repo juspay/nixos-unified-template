@@ -1,1 +1,1 @@
-./modules/flake-parts/config.nix
+./modules/flake/config.nix
