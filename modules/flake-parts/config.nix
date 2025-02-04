@@ -1,27 +1,10 @@
-{ lib, ... }:
+# Global configuration for this repo
+#
+# See ./modules/flake-parts/config-module.nix for schema
 {
-  options = {
-    me = lib.mkOption {
-      default = { };
-      type = lib.types.submodule {
-        options = {
-          username = lib.mkOption {
-            type = lib.types.str;
-            default = "runner";
-            description = "Your username as shown by `id -un`";
-          };
-          fullname = lib.mkOption {
-            type = lib.types.str;
-            default = "John Doe";
-            description = "Your full name for use in Git config";
-          };
-          email = lib.mkOption {
-            type = lib.types.str;
-            default = "johndoe@example.com";
-            description = "Your email for use in Git config";
-          };
-        };
-      };
-    };
+  me = {
+    username = "runner";
+    fullname = "John Doe";
+    email = "johndoe@example.com";
   };
 }
