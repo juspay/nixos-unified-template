@@ -15,7 +15,16 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
-        # Custom zshrc goes here
+        # Custom ~/.zshenv goes here
+      '';
+      profileExtra = ''
+        # Custom ~/.zprofile goes here
+      '';
+      loginExtra = ''
+        # Custom ~/.zlogin goes here
+      '';
+      logoutExtra = ''
+        # Custom ~/.zlogout goes here
       '';
     };
 
