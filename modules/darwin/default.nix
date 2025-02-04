@@ -9,7 +9,14 @@ let
 in
 {
   # Use TouchID for `sudo` authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  # security.pam.enableSudoTouchIdAuth = true;
+  # or as better alternative create sudo_local which will
+  # not get nuked every macos update. 
+  environment.etc = {
+    "pam.d/sudo_local".text = ''
+      auth sufficient pam_tid.so
+    '';
+  };  
 
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" me.username ];
