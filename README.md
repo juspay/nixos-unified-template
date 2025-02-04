@@ -92,7 +92,7 @@ Run `nix run` to activate this configuration in your system.
 
 To browse the capabilities of [home-manager] (and to see what else can go in your `./modules/home/*.nix` -- such as shell aliases), consult [home-manager options reference](https://nix-community.github.io/home-manager/options.xhtml). You can also run `man home-configuration.nix` in the terminal.
 
-Global configuration is in `./modules/flake-parts/config.nix`. Here, you can specify your user name, email and such settings.
+Global configuration is in the `./config.nix` file. Here, you can specify your user name, email and such settings.
 
 ## What's included
 
