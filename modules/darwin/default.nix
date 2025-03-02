@@ -9,7 +9,7 @@ let
 in
 {
   # Use TouchID for `sudo` authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" me.username ];
