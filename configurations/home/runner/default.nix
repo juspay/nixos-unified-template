@@ -1,13 +1,7 @@
 { flake, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-  me = import ./config.nix;
-in
 {
   imports = [
-    self.homeModules.default
+    flake.inputs.self.homeModules.default
   ];
-
-  home.username = me.username;
+  home.username = (import ./config.nix).username;
 }
