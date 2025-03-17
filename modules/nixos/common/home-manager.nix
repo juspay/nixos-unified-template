@@ -9,9 +9,10 @@ in
   # For home-manager to work.
   # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
   users.users = lib.mapAttrs
-    (_: v: lib.optionalAttrs pkgs.stdenv.isDarwin {
-      home = "/Users/${v.username}";
-    } // lib.optionalAttrs pkgs.stdenv.isLinux {
+    (_: v: lib.optionalAttrs pkgs.stdenv.isDarwin
+      {
+        home = "/Users/${v.username}";
+      } // lib.optionalAttrs pkgs.stdenv.isLinux {
       isNormalUser = true;
     })
     flake.config.users;
