@@ -1,5 +1,7 @@
 { flake, config, pkgs, lib, ... }:
-{
+let
+  inherit (flake.inputs) self;
+in {
   options = {
     myusers = lib.mkOption {
       type = lib.types.lazyAttrsOf
@@ -7,7 +9,7 @@
           imports = [ ./user.nix ];
         });
       default = {
-        runner = import ../runner.nix;
+        runner = import (self + /configurations/home/runner/config.nix);
       };
     };
   };

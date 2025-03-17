@@ -4,8 +4,7 @@ let
 in
 {
   imports = [
-    (self + /users/module/home.nix)
-    (self + /users/runner.nix)
-    flake.inputs.self.homeModules.default
+    ./config.nix
+    self.homeModules.default
   ];
 }
