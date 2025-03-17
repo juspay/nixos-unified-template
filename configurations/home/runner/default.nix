@@ -2,7 +2,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  me = flake.config.users."runner";
+  me = import ./config.nix;
 in
 {
   imports = [
