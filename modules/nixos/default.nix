@@ -3,7 +3,7 @@
 { flake, ... }:
 {
   imports = [
-    flake.inputs.self.nixosModules.common
+    flake.config.usersModule
   ];
   services.openssh.enable = true;
 }

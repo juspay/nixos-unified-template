@@ -1,8 +1,9 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
+{ flake, ... }:
 {
   imports = [
-    ./common
+    flake.config.usersModule
   ];
 
   # Use TouchID for `sudo` authentication
