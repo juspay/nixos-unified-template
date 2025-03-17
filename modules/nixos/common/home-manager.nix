@@ -19,7 +19,7 @@ in
   # Enable home-manager for our user
   home-manager.users = lib.mapAttrs
     (_: v: {
-      imports = [ (self + /configurations/home/${v.username}.nix) ];
+      imports = [ (self + /configurations/home/${v.username}) ];
     })
     flake.config.users;
 }
