@@ -1,11 +1,10 @@
 # See /modules/darwin/* for actual settings
 # This file is just *top-level* configuration.
-{ flake, ... }:
+{ flake, lib, ... }:
 
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  inherit (flake.config) me;
 in
 {
   imports = [
@@ -17,7 +16,11 @@ in
 
   # For home-manager to work.
   # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
-  users.users."${me.username}".home = "/Users/${me.username}";
+  users.users = lib.mapAttrs
+    (_: v: {
+      home = "/Users/${v.username}";
+    })
+    flake.config.users;
 
   home-manager = {
     # Automatically move old dotfiles out of the way
@@ -27,10 +30,12 @@ in
     # we try to use as unique a backup file extension as possible.
     backupFileExtension = "nixos-unified-template-backup";
 
-    # Enable home-manager for our user
-    users."${me.username}" = {
-      imports = [ (self + /configurations/home/${me.username}.nix) ];
-    };
+    # Enable home-manager for our users
+    users = lib.mapAttrs
+      (_: v: {
+        imports = [ (self + /configurations/home/${v.username}.nix) ];
+      })
+      flake.config.users;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.

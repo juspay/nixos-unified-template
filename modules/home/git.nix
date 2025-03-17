@@ -1,6 +1,6 @@
-{ flake, ... }:
+{ config, flake, ... }:
 let
-  inherit (flake.config) me;
+  me = flake.config.users.${config.home.username};
 in
 {
   home.shellAliases = {

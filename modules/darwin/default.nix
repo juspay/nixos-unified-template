@@ -2,17 +2,14 @@
 # For home configuration, see /modules/home/*
 { flake, pkgs, lib, ... }:
 
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-  inherit (flake.config) me;
-in
 {
   # Use TouchID for `sudo` authentication
   security.pam.services.sudo_local.touchIdAuth = true;
 
   # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" me.username ];
+  nix.settings.trusted-users = [
+    "root"
+  ] ++ lib.mapAttrsToList (_: v: v.username) flake.config.users;
 
   # Configure macOS system
   # More examples => https://github.com/ryan4yin/nix-darwin-kickstarter/blob/main/rich-demo/modules/system.nix
