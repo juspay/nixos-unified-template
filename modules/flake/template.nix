@@ -16,7 +16,7 @@
             || hasInfix "modules/darwin" path;
           nixosOnly =
             hasInfix "configurations/nixos" path
-            || hasInfix "modules/nixos" path;
+            || (hasInfix "modules/nixos/" path && !hasInfix "modules/nixos/common" path);
           alwaysExclude =
             hasSuffix "LICENSE" path
             || hasSuffix "README.md" path
