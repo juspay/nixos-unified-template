@@ -1,12 +1,9 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, lib, ... }:
-
+{ flake, ... }:
 {
-  # These users can add Nix caches.
-  nix.settings.trusted-users = [
-    "root"
-  ] ++ lib.mapAttrsToList (_: v: v.username) flake.config.users;
-
+  imports = [
+    flake.inputs.self.nixosModules.common
+  ];
   services.openssh.enable = true;
 }
