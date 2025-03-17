@@ -2,5 +2,6 @@
 {
   imports = [
     ./trust-everyone.nix
+    ./home-manager.nix
   ];
 }
