@@ -3,7 +3,7 @@
 { flake, ... }:
 {
   imports = [
-    flake.config.usersModule
+    ../../users/module/system.nix
   ];
 
   # Use TouchID for `sudo` authentication
