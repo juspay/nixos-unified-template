@@ -26,7 +26,7 @@
     # Enable home-manager for our user
     home-manager.users = lib.mapAttrs
       (_: v: {
-        imports = [ (flake.self + /configurations/home/${v.me.username}) ];
+        imports = [ (flake.self + /configurations/home/${v.me.username}.nix) ];
       })
       config.myusers;
   };
