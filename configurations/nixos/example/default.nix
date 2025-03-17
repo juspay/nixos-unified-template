@@ -5,7 +5,6 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  inherit (flake.config) me;
 in
 {
   imports = [
@@ -13,9 +12,4 @@ in
     self.nixosModules.gui
     ./configuration.nix
   ];
-
-  # Enable home-manager for our user
-  home-manager.users."${me.username}" = {
-    imports = [ (self + /configurations/home/${me.username}.nix) ];
-  };
 }

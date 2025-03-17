@@ -1,15 +1,9 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, lib, ... }:
-
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-  inherit (flake.config) me;
-in
+{ flake, ... }:
 {
-  # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" me.username ];
-
+  imports = [
+    flake.inputs.self.nixosModules.common
+  ];
   services.openssh.enable = true;
 }

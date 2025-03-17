@@ -2,7 +2,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  inherit (flake.config) me;
+  me = flake.config.users."runner";
 in
 {
   imports = [

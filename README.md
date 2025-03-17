@@ -96,7 +96,7 @@ Global configuration is in the `./config.nix` file. Here, you can specify your u
 
 ## What's included
 
-Here we describe just a handful of tools included in this template. See the [./modules](./modules) directory for more.
+Here we describe just a handful of tools included in this template. See the [./modules](./modules) directory for more. All of `./modules` and `./configurations` directories are organized by [nixos-unified's autowiring structure](https://nixos-unified.org/autowiring.html).
 
 ### neovim
 
