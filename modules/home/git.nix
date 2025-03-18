@@ -1,7 +1,4 @@
-{ config, flake, ... }:
-let
-  me = flake.config.users.${config.home.username};
-in
+{ config, ... }:
 {
   home.shellAliases = {
     g = "git";
@@ -12,8 +9,8 @@ in
   programs = {
     git = {
       enable = true;
-      userName = me.fullname;
-      userEmail = me.email;
+      userName = config.me.fullname;
+      userEmail = config.me.email;
       ignores = [ "*~" "*.swp" ];
       aliases = {
         ci = "commit";

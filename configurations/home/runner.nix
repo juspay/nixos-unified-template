@@ -2,13 +2,17 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  me = flake.config.users."runner";
 in
 {
   imports = [
     self.homeModules.default
   ];
 
-  home.username = me.username;
+  me = {
+    username = "runner";
+    fullname = "John Doe";
+    email = "johndoe@example.com";
+  };
+
   home.stateVersion = "24.11";
 }
