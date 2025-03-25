@@ -3,6 +3,7 @@
 {
   imports = [
     flake.inputs.disko.nixosModules.disko
+    ./disk-config.nix
   ];
 
   boot.loader = {
