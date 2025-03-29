@@ -7,7 +7,7 @@
         mkDescription = name:
           "A ${name} template providing useful tools & settings for Nix-based development";
 
-        filters = path: with inputs.nixpkgs.lib; {
+        filters = path: with inputs.nixpkgs.lib; rec {
           homeOnly =
             # NOTE: configurations/home/* is imported in nix-darwin and NixOS
             hasSuffix "activate-home.nix" path;
@@ -17,6 +17,9 @@
           nixosOnly =
             hasInfix "configurations/nixos" path
             || (hasInfix "modules/nixos/" path && !hasInfix "modules/nixos/common" path);
+          homeFilter =
+              !(nixosOnly || darwinOnly) && 
+              !hasInfix "modules/nixos" path;
           alwaysExclude =
             hasSuffix "LICENSE" path
             || hasSuffix "README.md" path
@@ -53,7 +56,7 @@
             filter = path: _:
               let f = filters path;
               in
-                !(f.nixosOnly || f.darwinOnly);
+                f.homeFilter;
           };
         };
 
