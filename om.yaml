@@ -1,0 +1,18 @@
+health:
+  default:
+    nix-version:
+      supported: ">=2.16.0"
+    direnv:
+      required: true
+develop:
+  default:
+    readme: |
+      🍾 Welcome to Nix configuration
+
+      To activate,
+
+      ```sh-session
+      just run
+      ```
+
+      🍎🍎 Run 'just' to see more commands.

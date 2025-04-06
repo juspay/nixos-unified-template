@@ -152,6 +152,7 @@
               packages."homeConfigurations.john.activationPackage" = {
                 "home-path/bin/nvim" = true;
                 "home-path/bin/git" = true;
+                "home-path/bin/om" = true;
                 "home-files/.config/git/config" = true;
               };
             };
