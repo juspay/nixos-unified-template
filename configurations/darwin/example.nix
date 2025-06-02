@@ -14,6 +14,8 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
   networking.hostName = "example";
 
+  system.primaryUser = "runner";
+
   # Automatically move old dotfiles out of the way
   #
   # Note that home-manager is not very smart, if this backup file already exists it
