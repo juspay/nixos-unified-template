@@ -64,8 +64,7 @@ If you are on macOS or running other Linux distros:
     ```
 1. Open a new terminal; Initialize[^omnix] your Nix configuration using this repo as template:
     ```sh-session
-    nix --accept-flake-config run github:juspay/omnix -- \
-      init github:juspay/nixos-unified-template -o ~/nixconfig
+    nix run nixpkgs#omnix -- init github:juspay/nixos-unified-template -o ~/nixconfig
     cd ~/nixconfig
     ```
     <img width="1092" alt="image" src="https://github.com/user-attachments/assets/1341d200-d894-488c-ba74-42d8830cc6f7">
