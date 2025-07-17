@@ -44,8 +44,8 @@ If you use, or intend to use, [NixOS]:
     ```sh-session
     sudo su -
     cd /etc/nixos
-    nix --accept-flake-config --extra-experimental-features "nix-command flakes" \
-      run github:juspay/omnix -- \
+    nix --extra-experimental-features "nix-command flakes" \
+      run nixpkgs#omnix -- \
       init github:juspay/nixos-unified-template#nixos -o .
     # Replace HOSTNAME with the hostname you entered above.
     mv configuration.nix hardware-configuration.nix ./configurations/nixos/HOSTNAME/
