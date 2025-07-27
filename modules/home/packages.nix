@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   # Nix packages to install to $HOME
   #
@@ -23,6 +23,10 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+
+    # Setup Claude Code using Google Vertex AI Platform
+    # https://github.com/juspay/vertex
+    flake.inputs.vertex.packages.${system}.default
   ];
 
   # Programs natively supported by home-manager.
