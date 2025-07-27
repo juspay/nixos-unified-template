@@ -26,7 +26,7 @@
 
     # Setup Claude Code using Google Vertex AI Platform
     # https://github.com/juspay/vertex
-    flake.inputs.vertex.packages.${system}.vertex;
+    flake.inputs.vertex.packages.${system}.default
   ];
 
   # Programs natively supported by home-manager.
