@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   # Nix packages to install to $HOME
   #
@@ -26,7 +26,7 @@
 
     # Setup Claude Code using Google Vertex AI Platform
     # https://github.com/juspay/vertex
-    vertex
+    flake.inputs.vertex.packages.${system}.vertex;
   ];
 
   # Programs natively supported by home-manager.
