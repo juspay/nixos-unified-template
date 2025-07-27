@@ -23,6 +23,10 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+
+    # Setup Claude Code using Google Vertex AI Platform
+    # https://github.com/juspay/vertex
+    vertex
   ];
 
   # Programs natively supported by home-manager.
