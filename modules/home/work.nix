@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 let
   initContent = lib.optionalString pkgs.stdenv.isDarwin # sh
     ''
@@ -8,6 +8,12 @@ let
     '';
 in
 {
+  home.packages = with pkgs;[
+    # Setup Claude Code using Google Vertex AI Platform
+    # https://github.com/juspay/vertex
+    flake.inputs.vertex.packages.${system}.default
+  ];
+
   programs = {
     bash.initExtra = initContent;
     zsh = {
