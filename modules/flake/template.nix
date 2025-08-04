@@ -18,7 +18,7 @@
             hasInfix "configurations/nixos" path
             || (hasInfix "modules/nixos/" path && !hasInfix "modules/nixos/common" path);
           homeFilter =
-              !(nixosOnly || darwinOnly) && 
+              !(nixosOnly || darwinOnly) &&
               !hasInfix "modules/nixos" path;
           alwaysExclude =
             hasSuffix "LICENSE" path
@@ -136,6 +136,13 @@
             name = "neovim";
             description = "Include Neovim configuration";
             paths = [ "**/neovim**" ];
+            value = false;
+          }
+          # Work
+          {
+            name = "work";
+            description = "Include work-related configuration";
+            paths = [ "**/work**" ];
             value = false;
           }
         ];
