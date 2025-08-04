@@ -141,7 +141,7 @@
           # Work
           {
             name = "work";
-            description = "Include work-related configuration";
+            description = "Include work-related configuration (select only if a Juspay engineer)";
             paths = [ "**/work**" ];
             value = false;
           }
