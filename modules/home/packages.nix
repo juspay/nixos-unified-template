@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Nix packages to install to $HOME
   #
@@ -23,10 +23,6 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
-
-    # Setup Claude Code using Google Vertex AI Platform
-    # https://github.com/juspay/vertex
-    flake.inputs.vertex.packages.${system}.default
   ];
 
   # Programs natively supported by home-manager.
@@ -42,7 +38,7 @@
     # Tmate terminal sharing.
     tmate = {
       enable = true;
-      #host = ""; #In case you wish to use a server other than tmate.io 
+      #host = ""; #In case you wish to use a server other than tmate.io
     };
   };
 }
