@@ -8,10 +8,10 @@ let
     '';
 in
 {
-  home.packages = with pkgs;[
+  home.packages = [
     # Setup Claude Code using Google Vertex AI Platform
     # https://github.com/juspay/vertex
-    flake.inputs.vertex.packages.${system}.default
+    flake.inputs.vertex.packages.${pkgs.system}.default
   ];
 
   programs = {
