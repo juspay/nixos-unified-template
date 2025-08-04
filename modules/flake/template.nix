@@ -142,7 +142,7 @@
           {
             name = "work";
             description = "Include work-related configuration (select only if a Juspay engineer)";
-            paths = [ "**/work**" ];
+            paths = [ "**/work.nix" ];
             value = false;
           }
         ];
