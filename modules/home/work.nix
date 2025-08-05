@@ -19,6 +19,9 @@ in
     zsh = {
       inherit initContent;
     };
+
+    # Hides gcloud email in prompt (used by vertex CLI)
+    # See: https://github.com/juspay/nixos-unified-template/discussions/184
     starship.settings.gcloud.disabled = true;
   };
 }
