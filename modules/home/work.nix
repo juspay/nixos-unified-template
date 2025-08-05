@@ -19,5 +19,6 @@ in
     zsh = {
       inherit initContent;
     };
+    starship.settings.gcloud.disabled = true;
   };
 }
