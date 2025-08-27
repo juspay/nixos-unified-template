@@ -26,11 +26,15 @@ in
     # For home-manager to work.
     # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
     users.users = mapListToAttrs config.myusers (name:
+      let
+        userConfig = config.home-manager.users.${name};
+      in
       lib.optionalAttrs pkgs.stdenv.isDarwin
         {
           home = "/Users/${name}";
         } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
+        extraGroups = userConfig.me.extraGroups;
       }
     );
 
