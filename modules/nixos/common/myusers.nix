@@ -32,6 +32,7 @@ in
       lib.optionalAttrs pkgs.stdenv.isDarwin
         {
           home = "/Users/${name}";
+          extraGroups = userConfig.me.extraGroups;
         } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
         extraGroups = userConfig.me.extraGroups;
