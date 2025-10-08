@@ -144,11 +144,11 @@
     },
     "nixos-unified": {
       "locked": {
-        "lastModified": 1758589656,
-        "narHash": "sha256-wkobO6EpeFxdYTQKRDfDXrLuNwEDZxfUIcgjwo1tKWY=",
+        "lastModified": 1759930230,
+        "narHash": "sha256-TNHU7XzbCRRIqgbEDaW9kw7w8GBMHDzzExkd20ddgEk=",
         "owner": "srid",
         "repo": "nixos-unified",
-        "rev": "ee94b71a81b7445c5d2ed35c53210a5b227baabb",
+        "rev": "bc8a4628994e3bf5fb5cfa1d633aaef618b2cfad",
         "type": "github"
       },
       "original": {
