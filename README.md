@@ -115,6 +115,8 @@ Your `~/.config/git/config` is managed entirely in Nix. See `git.nix`.
 
 Type `, ` followed by the any binary name to run it directly from nixpkgs, using [comma](https://github.com/nix-community/comma).
 
+[![asciicast](https://asciinema.org/a/i3zAyXH7zYlBJU8shQK5nhke7.svg)](https://asciinema.org/a/i3zAyXH7zYlBJU8shQK5nhke7)
+
 ### Garbage collection
 
 Nix garbage collection runs periodically to keep disk space manageable. See `gc.nix`
