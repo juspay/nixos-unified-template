@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   initContent = lib.optionalString pkgs.stdenv.isDarwin # sh
     ''
@@ -8,20 +8,10 @@ let
     '';
 in
 {
-  home.packages = [
-    # Setup Claude Code using Google Vertex AI Platform
-    # https://github.com/juspay/vertex
-    flake.inputs.vertex.packages.${pkgs.system}.default
-  ];
-
   programs = {
     bash.initExtra = initContent;
     zsh = {
       inherit initContent;
     };
-
-    # Hides gcloud email in prompt (used by vertex CLI)
-    # See: https://github.com/juspay/nixos-unified-template/discussions/184
-    starship.settings.gcloud.disabled = true;
   };
 }
