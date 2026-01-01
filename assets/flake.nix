@@ -12,7 +12,6 @@
     		unstb = nixpkgs-unstb.legacyPackages.${system};
      	in {
         devShells.default = pkgs.mkShell {
-          NIX_SHELL_NAME="JS";
        	  packages = with pkgs; [
        	    # Packages used to take demo
             vhs
