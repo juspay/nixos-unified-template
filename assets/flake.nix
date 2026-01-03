@@ -1,31 +1,35 @@
 {
   description = "nixos-unified-template flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    nixpkgs-unstb.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
-  outputs = { self, nixpkgs, nixpkgs-unstb, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-     	let
-    		pkgs = nixpkgs.legacyPackages.${system};
-    		unstb = nixpkgs-unstb.legacyPackages.${system};
-     	in {
-        devShells.default = pkgs.mkShell {
-       	  packages = with pkgs; [
-       	    # Packages used to take demo
-            vhs
-            ffmpeg
-            ttyd
-            chromium
+  outputs = inputs@{ flake-parts, nixpkgs, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      perSystem = { system, ... }:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              # Packages used to take demo
+              vhs
+              ffmpeg
+              ttyd
+              chromium
 
-            # Packages used within demo
-            tree
-            # # For Copy-Paste 
-       	    # xclip
-       	    # wl-clipboard
-         	];
+              # Packages used within demo
+              tree
+              # xclip
+              # wl-clipboard
+            ];
+          };
         };
-      }
-    );
+    };
 }
