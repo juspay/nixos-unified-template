@@ -26,6 +26,7 @@
             || hasInfix ".github" path
             || hasSuffix "template.nix" path
             || hasSuffix "test.nix" path
+            || hasInfix "assets/" path
           ;
         };
       in

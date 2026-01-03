@@ -34,6 +34,8 @@ Under the hood, it uses [nixos-unified]. See [`./modules`](modules/) to see what
 
 ## Getting Started
 
+![Demo](./assets/out.gif)
+
 ### On NixOS
 
 If you use, or intend to use, [NixOS]:
