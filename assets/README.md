@@ -136,5 +136,5 @@ Enter
 ## Additional Resources
 
 - [VHS Documentation](https://github.com/charmbracelet/vhs)
-- [nixos-unified-template Main README](../README.md)
+- [nixos-unified-template Main README](https://github.com/juspay/nixos-unified-template/blob/main/README.md)
 - [Nix Flakes Guide](https://nixos.wiki/wiki/Flakes)
