@@ -1,4 +1,4 @@
-Require tree
+Require eza
 
 # Outputs
 Output out.gif
@@ -7,6 +7,7 @@ Output out.mp4
 # Configurations
 Set Shell fish
 Set FontSize 16
+Set FontFamily "JetbrainsMono Nerd Font"
 Set Height 1000
 Set Margin 8
 Set MarginFill "#7E7EFF"
@@ -57,7 +58,7 @@ Sleep 1.5s
 Hide
 Type "clear"
 Enter
-Type "tree"
+Type "eza --tree --icons ."
 Enter
 Show
 Sleep 5s
