@@ -17,7 +17,8 @@ Set CursorBlink false
 Type "nix run nixpkgs#omnix -- init github:juspay/nixos-unified-template -o ./nixconfig && cd ./nixconfig"
 Sleep 1s
 Enter
-Sleep 2s
+Wait+Line@20s /(?i)\bSelect\s+a\s+template\b/
+Sleep 1s
 Down
 Sleep 300ms
 Down
@@ -53,9 +54,10 @@ Enter
 Sleep 1.5s
 
 # Stage 2: Module Exploration
-Type@0.01 "clear"
+Hide
+Type "clear"
 Enter
 Type "tree"
-Sleep 1s
 Enter
-Sleep 3s
+Show
+Sleep 5s
