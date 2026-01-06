@@ -18,8 +18,10 @@ Set CursorBlink false
 Type "nix run nixpkgs#omnix -- init github:juspay/nixos-unified-template -o ./nixconfig && cd ./nixconfig"
 Sleep 1s
 Enter
-Wait+Line@20s /(?i)\bSelect\s+a\s+template\b/
-Sleep 1s
+Hide
+Wait+Line@30s /(?i)\bSelect\s+a\s+template\b/
+Show
+Sleep 1.5s
 Down
 Sleep 300ms
 Down
@@ -61,4 +63,4 @@ Enter
 Type "eza --tree --icons ."
 Enter
 Show
-Sleep 5s
+Sleep 7s
