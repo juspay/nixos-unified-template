@@ -3,7 +3,7 @@
 ## Create the demo
 
 ```
-nix develop -c vhs demo.tape
+nix run
 ```
 
 [VHS](https://github.com/charmbracelet/vhs) will automatically:

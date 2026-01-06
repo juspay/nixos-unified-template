@@ -13,17 +13,30 @@
         "aarch64-darwin"
       ];
       perSystem =
-        { pkgs, ... }:
-        {
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
+        { pkgs, ... }: let
+          app = pkgs.writeShellApplication {
+            name = "demo";
+            runtimeInputs = with pkgs; [
+              nix
+              omnix
               vhs
-              ffmpeg
-              ttyd
-              chromium
               eza
+              ttyd
+              ffmpeg
+              chromium
               nerd-fonts.jetbrains-mono
             ];
+            text = ''
+              nix flake prefetch-inputs .
+              nix flake prefetch github:juspay/nixos-unified-template
+              vhs ./demo.tape
+              rm -rf ./nixconfig
+            '';
+          };
+        in
+        {
+          apps.default = {
+            program = "${app}/bin/demo";
           };
         };
     };
