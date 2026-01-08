@@ -1,10 +1,10 @@
-# NOTE: We expect this file to be supplanted by the original /etc/nixos/configuration.nix
+{ lib, ... }:
 {
-  # These are normally in hardware-configuration.nix
-  boot.loader.grub.device = "nodev";
-  fileSystems."/" = { device = "/dev/disk/by-label/nixos"; fsType = "btrfs"; };
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   networking.hostName = "example";
 
   # Used for backwards compatibility, please read the changelog before changing.
