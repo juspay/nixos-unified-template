@@ -19,7 +19,7 @@ Type "nix run nixpkgs#omnix -- init github:juspay/nixos-unified-template -o ./ni
 Sleep 1s
 Enter
 Hide
-Wait+Line@30s /(?i)\bSelect\s+a\s+template\b/
+Wait+Line@60s /(?i)\bSelect\s+a\s+template\b/
 Show
 Sleep 1.5s
 Down

@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
   outputs =
@@ -21,14 +21,14 @@
               omnix
               vhs
               eza
-              ttyd
-              ffmpeg
-              chromium
               nerd-fonts.jetbrains-mono
             ];
             text = ''
-              nix flake prefetch-inputs .
               nix flake prefetch github:juspay/nixos-unified-template
+              nix build nixpkgs#omnix --no-link
+              nix build nixpkgs#vhs --no-link
+              nix build nixpkgs#eza --no-link
+              nix build nixpkgs#nerd-fonts.jetbrains-mono --no-link
               vhs ./demo.tape
               rm -rf ./nixconfig
             '';
