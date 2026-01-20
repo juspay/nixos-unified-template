@@ -16,6 +16,10 @@
           };
           app = pkgs.writeShellApplication {
             name = "demo";
+            runtimeEnv = {
+              output_dir = "nixconfig";
+              FONTCONFIG_FILE = "${fontsConf}";
+            };
             runtimeInputs = with pkgs; [
               omnix
               vhs
@@ -24,9 +28,8 @@
               fontconfig
             ];
             text = ''
-              export FONTCONFIG_FILE=${fontsConf}
               nix flake prefetch github:juspay/nixos-unified-template
-              vhs ./demo.tape || true && rm -rf ./nixconfig
+              vhs ./demo.tape; rm -rf ./$output_dir
             '';
           };
         in

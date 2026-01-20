@@ -17,22 +17,22 @@ Set BorderRadius 10
 Set CursorBlink false
 
 # Stage 1: Module Generation
-Type "om init github:juspay/nixos-unified-template -o ./nixconfig && cd ./nixconfig"
+Type "om init github:juspay/nixos-unified-template -o ./$output_dir && cd ./$output_dir"
 Sleep 1s
 Enter
 Hide
-Wait /(?i)\bSelect\s+a\s+template\b/
+Wait+Line@100s /(?i)\bSelect\s+a\s+template\b/
 Show
 Sleep 1.5s
 Down
 Sleep 300ms
 Down
 Sleep 300ms
-Up 
+Up
 Sleep 300ms
 Up
 Sleep 300ms
-Down 
+Down
 Sleep 300ms
 Down
 Sleep 1s
@@ -61,8 +61,10 @@ Sleep 1.5s
 # Stage 2: Module Exploration
 Hide
 Type "clear"
-Enter
-Type "eza --tree --icons ."
-Enter
 Show
+Enter
+Hide
+Type "eza --tree --icons ."
+Show
+Enter
 Sleep 7s
