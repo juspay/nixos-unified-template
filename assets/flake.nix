@@ -29,7 +29,7 @@
             ];
             text = ''
               nix flake prefetch github:juspay/nixos-unified-template
-              vhs ./demo.tape; rm -rf ./$output_dir
+              trap 'rm -rf ./$output_dir' EXIT; vhs ./demo.tape
             '';
           };
         in
