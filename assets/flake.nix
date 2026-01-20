@@ -6,31 +6,27 @@
   outputs =
     inputs@{ flake-parts, nixpkgs, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
+      systems = nixpkgs.lib.systems.flakeExposed;
       perSystem =
         { pkgs, ... }: let
+          fontsConf = pkgs.makeFontsConf {
+            fontDirectories = [
+              pkgs.nerd-fonts.jetbrains-mono
+            ];
+          };
           app = pkgs.writeShellApplication {
             name = "demo";
             runtimeInputs = with pkgs; [
-              nix
               omnix
               vhs
               eza
-              nerd-fonts.jetbrains-mono
+              fish
+              fontconfig
             ];
             text = ''
+              export FONTCONFIG_FILE=${fontsConf}
               nix flake prefetch github:juspay/nixos-unified-template
-              nix build nixpkgs#omnix --no-link
-              nix build nixpkgs#vhs --no-link
-              nix build nixpkgs#eza --no-link
-              nix build nixpkgs#nerd-fonts.jetbrains-mono --no-link
-              vhs ./demo.tape
-              rm -rf ./nixconfig
+              vhs ./demo.tape || true && rm -rf ./nixconfig
             '';
           };
         in
