@@ -15,6 +15,12 @@
         type = lib.types.str;
         description = "Your email for use in Git config";
       };
+      extraGroups = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "Extra groups to which the user should belong. This is only used in NixOS/nix-darwin, and wouldn't work with standalone home-manager.";
+        example = "[ \"wheel\" \"docker\" ]";
+      };
     };
   };
   config = {
