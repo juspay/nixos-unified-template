@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ flake, pkgs, lib, ... }:
 let
   initContent = lib.optionalString pkgs.stdenv.isDarwin # sh
     ''
@@ -8,6 +8,9 @@ let
     '';
 in
 {
+  imports = [
+    flake.inputs.juspay-ai.homeModules.opencode-juspay
+  ];
   programs = {
     bash.initExtra = initContent;
     zsh = {

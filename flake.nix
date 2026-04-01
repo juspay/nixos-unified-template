@@ -17,6 +17,10 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+
+    # Work inputs
+    juspay-ai.url = "github:juspay/AI";
+    juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Wired using https://nixos-unified.org/guide/autowiring
