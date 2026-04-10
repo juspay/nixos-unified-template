@@ -3,6 +3,6 @@
   nix.gc = {
     automatic = true;
     # Change how often the garbage collector runs (default: weekly)
-    # frequency = "monthly";
+    # dates = "monthly";
   };
 }
