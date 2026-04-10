@@ -3,7 +3,7 @@
   imports = [
     # NOTE: The nix-index DB is slow to search, until
     # https://github.com/nix-community/nix-index-database/issues/130
-    flake.inputs.nix-index-database.hmModules.nix-index
+    flake.inputs.nix-index-database.homeModules.nix-index
   ];
 
   # command-not-found handler to suggest nix way of installing stuff.
